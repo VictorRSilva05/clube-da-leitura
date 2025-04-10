@@ -46,10 +46,10 @@
             buttonAtualizar = new Button();
             buttonSalvar = new Button();
             buttonLimpar = new Button();
+            dataGridView1 = new DataGridView();
             tabPageCaixas = new TabPage();
             tabPageRevistas = new TabPage();
             tabPageEmprestimos = new TabPage();
-            dataGridView1 = new DataGridView();
             tabControl1.SuspendLayout();
             tabPageAmigos.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -234,6 +234,7 @@
             buttonDeletar.TabIndex = 3;
             buttonDeletar.Text = "Deletar";
             buttonDeletar.UseVisualStyleBackColor = true;
+            buttonDeletar.Click += buttonDeletar_Click;
             // 
             // buttonAtualizar
             // 
@@ -243,6 +244,7 @@
             buttonAtualizar.TabIndex = 2;
             buttonAtualizar.Text = "Atualizar";
             buttonAtualizar.UseVisualStyleBackColor = true;
+            buttonAtualizar.Click += buttonAtualizar_Click;
             // 
             // buttonSalvar
             // 
@@ -252,6 +254,7 @@
             buttonSalvar.TabIndex = 1;
             buttonSalvar.Text = "Salvar";
             buttonSalvar.UseVisualStyleBackColor = true;
+            buttonSalvar.Click += buttonSalvar_Click;
             // 
             // buttonLimpar
             // 
@@ -262,6 +265,15 @@
             buttonLimpar.Text = "Limpar";
             buttonLimpar.UseVisualStyleBackColor = true;
             buttonLimpar.Click += buttonLimpar_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(936, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(927, 800);
+            dataGridView1.TabIndex = 1;
             // 
             // tabPageCaixas
             // 
@@ -292,15 +304,6 @@
             tabPageEmprestimos.TabIndex = 3;
             tabPageEmprestimos.Text = "Emprestimos";
             tabPageEmprestimos.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(936, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(927, 800);
-            dataGridView1.TabIndex = 1;
             // 
             // Form1
             // 
