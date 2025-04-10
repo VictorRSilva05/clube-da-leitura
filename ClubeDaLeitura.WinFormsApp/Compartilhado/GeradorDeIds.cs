@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.WinFormsApp.Compartilhado
 {
-    public static  class GeradorDeIds
+    public static class GeradorDeIds
     {
         public static long IdAmigo = 0;
+        public static long IdCaixa = 0;
 
         public static long GerarIdAmigo()
         {
             IdAmigo++;
             return IdAmigo;
+        }
+
+        public static long GerarIdCaixa()
+        {
+            IdCaixa++;
+            return IdCaixa;
         }
     }
 }

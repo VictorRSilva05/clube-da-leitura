@@ -1,5 +1,6 @@
 using ClubeDaLeitura.WinFormsApp.Compartilhado;
 using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
+using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
 using System.Reflection;
 
 namespace ClubeDaLeitura.WinFormsApp
@@ -7,11 +8,13 @@ namespace ClubeDaLeitura.WinFormsApp
     public partial class Form1 : Form
     {
         public RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
+        public RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
         public Form1()
         {
             InitializeComponent();
             InicializarDataGridViewAmigos();
             AtualizarDataGridViewAmigos();
+            InicializarComboBoxEmprestimosEtiqueta();
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -19,10 +22,14 @@ namespace ClubeDaLeitura.WinFormsApp
             LimparCamposAmigos();
         }
 
+        private void buttonLimparEtiqueta_Click(object sender, EventArgs e)
+        {
+            LimparCamposCaixa();
+        }
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-            string nome = textBoxNome.Text;
-            string NomeResponsavel = textBoxNomeResponsavel.Text;
+            string nome = textBoxNomeAmigo.Text;
+            string NomeResponsavel = textBoxResponsavelAmigo.Text;
             string telefone = maskedTextBoxTelefone.Text;
 
             Amigo amigo = new Amigo(nome, NomeResponsavel, telefone);
@@ -42,43 +49,93 @@ namespace ClubeDaLeitura.WinFormsApp
             AtualizarDataGridViewAmigos();
         }
 
+        private void buttonSalvarEtiqueta_Click(object sender, EventArgs e)
+        {
+            string etiqueta = textBoxEtiqueta.Text;
+            int diasDeEmprestimo = Convert.ToInt32(comboBoxEmprestimoEtiqueta.SelectedItem);
+            string cor = textBoxRed.Text + " " + textBoxGreen.Text + " " + textBoxBlue.Text;
+
+            Caixa caixa = new Caixa(etiqueta, cor, diasDeEmprestimo);
+
+            string erros = caixa.Validar();
+
+            if (erros.Length > 0)
+            {
+                MessageBox.Show(erros);
+                return;
+            }
+
+            caixa.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa);
+            MessageBox.Show($"Caixa {caixa.Etiqueta} inserida!");
+            LimparCamposCaixa();
+
+        }
         private void LimparCamposAmigos()
         {
-            textBoxId.Clear();
-            textBoxNome.Clear();
-            textBoxNomeResponsavel.Clear();
+            textBoxIdAmigo.Clear();
+            textBoxNomeAmigo.Clear();
+            textBoxResponsavelAmigo.Clear();
             maskedTextBoxTelefone.Clear();
+        }
+
+        private void LimparCamposCaixa()
+        {
+            textBoxIdEtiqueta.Clear();
+            textBoxEtiqueta.Clear();
+            comboBoxEmprestimoEtiqueta.SelectedIndex = -1;
+            Color color = new Color();
+            color = Color.White;
+            textBoxRed.Text = color.R.ToString();
+            textBoxGreen.Text = color.G.ToString();
+            textBoxBlue.Text = color.B.ToString();
+            panel1.BackColor = color;
         }
 
         private void buttonDeletar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxId.Text))
+            if (string.IsNullOrEmpty(textBoxIdAmigo.Text))
             {
                 MessageBox.Show("Por favor, insira um ID válido.");
                 return;
             }
             else
             {
-                repositorioAmigo.Excluir(repositorioAmigo.SelecionarPorId(textBoxId.Text));
+                repositorioAmigo.Excluir(repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text));
             }
-            MessageBox.Show($"Amigo com o id {textBoxId.Text} foi excluído.");
+            MessageBox.Show($"Amigo com o id {textBoxIdAmigo.Text} foi excluído.");
             LimparCamposAmigos();
             AtualizarDataGridViewAmigos();
         }
 
+        private void buttonDeletarEtiqueta_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido");
+                return;
+            }
+            else
+            {
+                repositorioCaixa.Excluir(repositorioCaixa.SelecionarPorId(textBoxIdEtiqueta.Text));
+            }
+            MessageBox.Show($"Caixa com o id {textBoxIdEtiqueta.Text} foi excluído.");
+            LimparCamposCaixa();
+        }
+
         private void buttonAtualizar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxId.Text))
+            if (string.IsNullOrEmpty(textBoxIdAmigo.Text))
             {
                 MessageBox.Show("Por favor, insira um ID válido.");
                 return;
             }
             else
             {
-                var amigo = repositorioAmigo.SelecionarPorId(textBoxId.Text);
+                var amigo = repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text);
 
-                amigo.Nome = textBoxNome.Text;
-                amigo.Responsavel = textBoxNomeResponsavel.Text;
+                amigo.Nome = textBoxNomeAmigo.Text;
+                amigo.Responsavel = textBoxResponsavelAmigo.Text;
                 amigo.Telefone = maskedTextBoxTelefone.Text;
 
                 string erros = amigo.Validar();
@@ -94,7 +151,33 @@ namespace ClubeDaLeitura.WinFormsApp
                 AtualizarDataGridViewAmigos();
             }
         }
+        private void buttonAtualizarEtiqueta_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            else
+            {
+                var caixa = repositorioCaixa.SelecionarPorId(textBoxIdEtiqueta.Text);
 
+                caixa.Etiqueta = textBoxEtiqueta.Text;
+                caixa.DiasDeEmprestimo = Convert.ToInt32(comboBoxEmprestimoEtiqueta.SelectedItem);
+                caixa.Cor = textBoxRed.Text + " " + textBoxGreen.Text + " " + textBoxBlue.Text;
+
+                string erros = caixa.Validar();
+
+                if (erros.Length > 0)
+                {
+                    MessageBox.Show(erros);
+                    return;
+                }
+
+                MessageBox.Show($"Caixa {caixa.Etiqueta} Atualizada!");
+                LimparCamposCaixa();
+            }
+        }
         private void InicializarDataGridViewAmigos()
         {
             dataGridView1.Columns.Add("Id", "Id");
@@ -118,9 +201,9 @@ namespace ClubeDaLeitura.WinFormsApp
 
         private void PopularControlesAmigos(Amigo amigo)
         {
-            textBoxId.Text = amigo.Id.ToString();
-            textBoxNome.Text = amigo.Nome.ToString();
-            textBoxNomeResponsavel.Text = amigo.Responsavel.ToString();
+            textBoxIdAmigo.Text = amigo.Id.ToString();
+            textBoxNomeAmigo.Text = amigo.Nome.ToString();
+            textBoxResponsavelAmigo.Text = amigo.Responsavel.ToString();
             maskedTextBoxTelefone.Text = amigo.Telefone.ToString();
         }
 
@@ -136,7 +219,7 @@ namespace ClubeDaLeitura.WinFormsApp
             {
                 Color color = pixelData.GetPixel(e.X, e.Y);
                 labelSmallScreen.BackColor = color;
-                labelValues.Text = "R " + color.R.ToString() + ", " + color.G.ToString() + ", " + color.B.ToString();
+                labelValues.Text = "R " + color.R.ToString() + ",G " + color.G.ToString() + ",B " + color.B.ToString();
             }
 
         }
@@ -145,13 +228,24 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             Bitmap pixelData = (Bitmap)pictureBox1.Image;
             if (e.X > 0 && e.Y > 0 && e.X < pixelData.Width && e.Y < pixelData.Height)
-            {  
+            {
                 Color color = pixelData.GetPixel(e.X, e.Y);
                 textBoxRed.Text = color.R.ToString();
                 textBoxGreen.Text = color.G.ToString();
                 textBoxBlue.Text = color.B.ToString();
                 panel1.BackColor = color;
             }
+        }
+
+        private void InicializarComboBoxEmprestimosEtiqueta()
+        {
+            List<int> list = new List<int>();
+            list.Add(3);
+            list.Add(5);
+            list.Add(7);
+
+            comboBoxEmprestimoEtiqueta.DataSource = list;
+            comboBoxEmprestimoEtiqueta.SelectedIndex = -1;
         }
     }
 }

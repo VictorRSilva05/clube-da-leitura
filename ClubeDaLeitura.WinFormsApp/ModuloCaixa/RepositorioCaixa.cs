@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
+using Microsoft.VisualBasic.Devices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +10,11 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloCaixa
 {
     public class RepositorioCaixa
     {
-        private List<Caixa> caixas = new List<Caixa>();
+        public List<Caixa> caixas = new List<Caixa>();
 
-        public void Inserir()
+        public void Inserir(Caixa caixa)
         {
-
+            caixas.Add(caixa);
         }
 
         public void Editar()
@@ -20,19 +22,22 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloCaixa
 
         }
 
-        public void Excluir()
+        public void Excluir(Caixa caixa)
         {
-
+            caixas.Remove(caixa);
         }
 
         public void SelecionarTodos()
         {
-
         }
 
-        public void SelecionarPorId()
+        public Caixa SelecionarPorId(string auxId)
         {
+            long id = Convert.ToInt64(auxId);
 
+            var caixa = caixas.Find(e => e.Id == id);
+
+            return caixa;
         }
     }
 }

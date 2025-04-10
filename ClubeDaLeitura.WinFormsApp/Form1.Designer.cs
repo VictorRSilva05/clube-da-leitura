@@ -35,35 +35,35 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
-            textBoxId = new TextBox();
+            textBoxIdAmigo = new TextBox();
             label3 = new Label();
             maskedTextBoxTelefone = new MaskedTextBox();
             label2 = new Label();
-            textBoxNomeResponsavel = new TextBox();
-            textBoxNome = new TextBox();
+            textBoxResponsavelAmigo = new TextBox();
             label1 = new Label();
             label4 = new Label();
+            textBoxNomeAmigo = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
-            buttonDeletar = new Button();
-            buttonAtualizar = new Button();
-            buttonSalvar = new Button();
-            buttonLimpar = new Button();
+            buttonDeletarAmigo = new Button();
+            buttonAtualizarAmigo = new Button();
+            buttonSalvarAmigo = new Button();
+            buttonLimparAmigo = new Button();
             dataGridView1 = new DataGridView();
             tabPageCaixas = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tableLayoutPanel8 = new TableLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            buttonDeletarEtiqueta = new Button();
+            buttonAtualizarEtiqueta = new Button();
+            buttonSalvarEtiqueta = new Button();
+            buttonLimparEtiqueta = new Button();
             tableLayoutPanel7 = new TableLayoutPanel();
-            comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
+            textBoxEtiqueta = new TextBox();
+            comboBoxEmprestimoEtiqueta = new ComboBox();
+            textBoxIdEtiqueta = new TextBox();
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
-            comboBox1 = new ComboBox();
             tableLayoutPanel9 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
             groupBox2 = new GroupBox();
@@ -157,14 +157,14 @@
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.19001F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.80999F));
-            tableLayoutPanel3.Controls.Add(textBoxId, 1, 0);
+            tableLayoutPanel3.Controls.Add(textBoxIdAmigo, 1, 0);
             tableLayoutPanel3.Controls.Add(label3, 0, 3);
             tableLayoutPanel3.Controls.Add(maskedTextBoxTelefone, 1, 3);
             tableLayoutPanel3.Controls.Add(label2, 0, 2);
-            tableLayoutPanel3.Controls.Add(textBoxNomeResponsavel, 1, 2);
-            tableLayoutPanel3.Controls.Add(textBoxNome, 1, 1);
+            tableLayoutPanel3.Controls.Add(textBoxResponsavelAmigo, 1, 2);
             tableLayoutPanel3.Controls.Add(label1, 0, 1);
             tableLayoutPanel3.Controls.Add(label4, 0, 0);
+            tableLayoutPanel3.Controls.Add(textBoxNomeAmigo, 1, 1);
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 4;
@@ -175,13 +175,13 @@
             tableLayoutPanel3.Size = new Size(921, 194);
             tableLayoutPanel3.TabIndex = 0;
             // 
-            // textBoxId
+            // textBoxIdAmigo
             // 
-            textBoxId.Font = new Font("Segoe UI", 16F);
-            textBoxId.Location = new Point(235, 3);
-            textBoxId.Name = "textBoxId";
-            textBoxId.Size = new Size(367, 36);
-            textBoxId.TabIndex = 7;
+            textBoxIdAmigo.Font = new Font("Segoe UI", 16F);
+            textBoxIdAmigo.Location = new Point(235, 3);
+            textBoxIdAmigo.Name = "textBoxIdAmigo";
+            textBoxIdAmigo.Size = new Size(367, 36);
+            textBoxIdAmigo.TabIndex = 7;
             // 
             // label3
             // 
@@ -212,21 +212,13 @@
             label2.TabIndex = 1;
             label2.Text = "Nome do responsável:";
             // 
-            // textBoxNomeResponsavel
+            // textBoxResponsavelAmigo
             // 
-            textBoxNomeResponsavel.Font = new Font("Segoe UI", 16F);
-            textBoxNomeResponsavel.Location = new Point(235, 99);
-            textBoxNomeResponsavel.Name = "textBoxNomeResponsavel";
-            textBoxNomeResponsavel.Size = new Size(367, 36);
-            textBoxNomeResponsavel.TabIndex = 4;
-            // 
-            // textBoxNome
-            // 
-            textBoxNome.Font = new Font("Segoe UI", 16F);
-            textBoxNome.Location = new Point(235, 51);
-            textBoxNome.Name = "textBoxNome";
-            textBoxNome.Size = new Size(367, 36);
-            textBoxNome.TabIndex = 3;
+            textBoxResponsavelAmigo.Font = new Font("Segoe UI", 16F);
+            textBoxResponsavelAmigo.Location = new Point(235, 99);
+            textBoxResponsavelAmigo.Name = "textBoxResponsavelAmigo";
+            textBoxResponsavelAmigo.Size = new Size(367, 36);
+            textBoxResponsavelAmigo.TabIndex = 4;
             // 
             // label1
             // 
@@ -248,6 +240,14 @@
             label4.TabIndex = 6;
             label4.Text = "Id:";
             // 
+            // textBoxNomeAmigo
+            // 
+            textBoxNomeAmigo.Font = new Font("Segoe UI", 16F);
+            textBoxNomeAmigo.Location = new Point(235, 51);
+            textBoxNomeAmigo.Name = "textBoxNomeAmigo";
+            textBoxNomeAmigo.Size = new Size(367, 36);
+            textBoxNomeAmigo.TabIndex = 3;
+            // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 4;
@@ -255,10 +255,10 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel4.Controls.Add(buttonDeletar, 3, 0);
-            tableLayoutPanel4.Controls.Add(buttonAtualizar, 2, 0);
-            tableLayoutPanel4.Controls.Add(buttonSalvar, 1, 0);
-            tableLayoutPanel4.Controls.Add(buttonLimpar, 0, 0);
+            tableLayoutPanel4.Controls.Add(buttonDeletarAmigo, 3, 0);
+            tableLayoutPanel4.Controls.Add(buttonAtualizarAmigo, 2, 0);
+            tableLayoutPanel4.Controls.Add(buttonSalvarAmigo, 1, 0);
+            tableLayoutPanel4.Controls.Add(buttonLimparAmigo, 0, 0);
             tableLayoutPanel4.Location = new Point(3, 403);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
@@ -266,45 +266,45 @@
             tableLayoutPanel4.Size = new Size(921, 100);
             tableLayoutPanel4.TabIndex = 1;
             // 
-            // buttonDeletar
+            // buttonDeletarAmigo
             // 
-            buttonDeletar.Location = new Point(693, 3);
-            buttonDeletar.Name = "buttonDeletar";
-            buttonDeletar.Size = new Size(224, 94);
-            buttonDeletar.TabIndex = 3;
-            buttonDeletar.Text = "Deletar";
-            buttonDeletar.UseVisualStyleBackColor = true;
-            buttonDeletar.Click += buttonDeletar_Click;
+            buttonDeletarAmigo.Location = new Point(693, 3);
+            buttonDeletarAmigo.Name = "buttonDeletarAmigo";
+            buttonDeletarAmigo.Size = new Size(224, 94);
+            buttonDeletarAmigo.TabIndex = 3;
+            buttonDeletarAmigo.Text = "Deletar";
+            buttonDeletarAmigo.UseVisualStyleBackColor = true;
+            buttonDeletarAmigo.Click += buttonDeletar_Click;
             // 
-            // buttonAtualizar
+            // buttonAtualizarAmigo
             // 
-            buttonAtualizar.Location = new Point(463, 3);
-            buttonAtualizar.Name = "buttonAtualizar";
-            buttonAtualizar.Size = new Size(224, 94);
-            buttonAtualizar.TabIndex = 2;
-            buttonAtualizar.Text = "Atualizar";
-            buttonAtualizar.UseVisualStyleBackColor = true;
-            buttonAtualizar.Click += buttonAtualizar_Click;
+            buttonAtualizarAmigo.Location = new Point(463, 3);
+            buttonAtualizarAmigo.Name = "buttonAtualizarAmigo";
+            buttonAtualizarAmigo.Size = new Size(224, 94);
+            buttonAtualizarAmigo.TabIndex = 2;
+            buttonAtualizarAmigo.Text = "Atualizar";
+            buttonAtualizarAmigo.UseVisualStyleBackColor = true;
+            buttonAtualizarAmigo.Click += buttonAtualizar_Click;
             // 
-            // buttonSalvar
+            // buttonSalvarAmigo
             // 
-            buttonSalvar.Location = new Point(233, 3);
-            buttonSalvar.Name = "buttonSalvar";
-            buttonSalvar.Size = new Size(224, 94);
-            buttonSalvar.TabIndex = 1;
-            buttonSalvar.Text = "Salvar";
-            buttonSalvar.UseVisualStyleBackColor = true;
-            buttonSalvar.Click += buttonSalvar_Click;
+            buttonSalvarAmigo.Location = new Point(233, 3);
+            buttonSalvarAmigo.Name = "buttonSalvarAmigo";
+            buttonSalvarAmigo.Size = new Size(224, 94);
+            buttonSalvarAmigo.TabIndex = 1;
+            buttonSalvarAmigo.Text = "Salvar";
+            buttonSalvarAmigo.UseVisualStyleBackColor = true;
+            buttonSalvarAmigo.Click += buttonSalvar_Click;
             // 
-            // buttonLimpar
+            // buttonLimparAmigo
             // 
-            buttonLimpar.Location = new Point(3, 3);
-            buttonLimpar.Name = "buttonLimpar";
-            buttonLimpar.Size = new Size(224, 94);
-            buttonLimpar.TabIndex = 0;
-            buttonLimpar.Text = "Limpar";
-            buttonLimpar.UseVisualStyleBackColor = true;
-            buttonLimpar.Click += buttonLimpar_Click;
+            buttonLimparAmigo.Location = new Point(3, 3);
+            buttonLimparAmigo.Name = "buttonLimparAmigo";
+            buttonLimparAmigo.Size = new Size(224, 94);
+            buttonLimparAmigo.TabIndex = 0;
+            buttonLimparAmigo.Text = "Limpar";
+            buttonLimparAmigo.UseVisualStyleBackColor = true;
+            buttonLimparAmigo.Click += buttonLimpar_Click;
             // 
             // dataGridView1
             // 
@@ -364,10 +364,10 @@
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel8.Controls.Add(button1, 3, 0);
-            tableLayoutPanel8.Controls.Add(button2, 2, 0);
-            tableLayoutPanel8.Controls.Add(button3, 1, 0);
-            tableLayoutPanel8.Controls.Add(button4, 0, 0);
+            tableLayoutPanel8.Controls.Add(buttonDeletarEtiqueta, 3, 0);
+            tableLayoutPanel8.Controls.Add(buttonAtualizarEtiqueta, 2, 0);
+            tableLayoutPanel8.Controls.Add(buttonSalvarEtiqueta, 1, 0);
+            tableLayoutPanel8.Controls.Add(buttonLimparEtiqueta, 0, 0);
             tableLayoutPanel8.Location = new Point(3, 403);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 1;
@@ -375,53 +375,57 @@
             tableLayoutPanel8.Size = new Size(921, 100);
             tableLayoutPanel8.TabIndex = 2;
             // 
-            // button1
+            // buttonDeletarEtiqueta
             // 
-            button1.Location = new Point(693, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(224, 94);
-            button1.TabIndex = 3;
-            button1.Text = "Deletar";
-            button1.UseVisualStyleBackColor = true;
+            buttonDeletarEtiqueta.Location = new Point(693, 3);
+            buttonDeletarEtiqueta.Name = "buttonDeletarEtiqueta";
+            buttonDeletarEtiqueta.Size = new Size(224, 94);
+            buttonDeletarEtiqueta.TabIndex = 3;
+            buttonDeletarEtiqueta.Text = "Deletar";
+            buttonDeletarEtiqueta.UseVisualStyleBackColor = true;
+            buttonDeletarEtiqueta.Click += buttonDeletarEtiqueta_Click;
             // 
-            // button2
+            // buttonAtualizarEtiqueta
             // 
-            button2.Location = new Point(463, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(224, 94);
-            button2.TabIndex = 2;
-            button2.Text = "Atualizar";
-            button2.UseVisualStyleBackColor = true;
+            buttonAtualizarEtiqueta.Location = new Point(463, 3);
+            buttonAtualizarEtiqueta.Name = "buttonAtualizarEtiqueta";
+            buttonAtualizarEtiqueta.Size = new Size(224, 94);
+            buttonAtualizarEtiqueta.TabIndex = 2;
+            buttonAtualizarEtiqueta.Text = "Atualizar";
+            buttonAtualizarEtiqueta.UseVisualStyleBackColor = true;
+            buttonAtualizarEtiqueta.Click += buttonAtualizarEtiqueta_Click;
             // 
-            // button3
+            // buttonSalvarEtiqueta
             // 
-            button3.Location = new Point(233, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(224, 94);
-            button3.TabIndex = 1;
-            button3.Text = "Salvar";
-            button3.UseVisualStyleBackColor = true;
+            buttonSalvarEtiqueta.Location = new Point(233, 3);
+            buttonSalvarEtiqueta.Name = "buttonSalvarEtiqueta";
+            buttonSalvarEtiqueta.Size = new Size(224, 94);
+            buttonSalvarEtiqueta.TabIndex = 1;
+            buttonSalvarEtiqueta.Text = "Salvar";
+            buttonSalvarEtiqueta.UseVisualStyleBackColor = true;
+            buttonSalvarEtiqueta.Click += buttonSalvarEtiqueta_Click;
             // 
-            // button4
+            // buttonLimparEtiqueta
             // 
-            button4.Location = new Point(3, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(224, 94);
-            button4.TabIndex = 0;
-            button4.Text = "Limpar";
-            button4.UseVisualStyleBackColor = true;
+            buttonLimparEtiqueta.Location = new Point(3, 3);
+            buttonLimparEtiqueta.Name = "buttonLimparEtiqueta";
+            buttonLimparEtiqueta.Size = new Size(224, 94);
+            buttonLimparEtiqueta.TabIndex = 0;
+            buttonLimparEtiqueta.Text = "Limpar";
+            buttonLimparEtiqueta.UseVisualStyleBackColor = true;
+            buttonLimparEtiqueta.Click += buttonLimparEtiqueta_Click;
             // 
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.ColumnCount = 2;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.19001F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.80999F));
-            tableLayoutPanel7.Controls.Add(comboBox2, 1, 2);
-            tableLayoutPanel7.Controls.Add(textBox1, 1, 0);
+            tableLayoutPanel7.Controls.Add(textBoxEtiqueta, 1, 1);
+            tableLayoutPanel7.Controls.Add(comboBoxEmprestimoEtiqueta, 1, 2);
+            tableLayoutPanel7.Controls.Add(textBoxIdEtiqueta, 1, 0);
             tableLayoutPanel7.Controls.Add(label6, 0, 2);
             tableLayoutPanel7.Controls.Add(label7, 0, 1);
             tableLayoutPanel7.Controls.Add(label8, 0, 0);
-            tableLayoutPanel7.Controls.Add(comboBox1, 1, 1);
             tableLayoutPanel7.Controls.Add(tableLayoutPanel9, 1, 3);
             tableLayoutPanel7.Controls.Add(groupBox1, 0, 3);
             tableLayoutPanel7.Location = new Point(3, 3);
@@ -434,22 +438,30 @@
             tableLayoutPanel7.Size = new Size(921, 394);
             tableLayoutPanel7.TabIndex = 1;
             // 
-            // comboBox2
+            // textBoxEtiqueta
             // 
-            comboBox2.Font = new Font("Segoe UI", 16F);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(235, 133);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(367, 38);
-            comboBox2.TabIndex = 9;
+            textBoxEtiqueta.Font = new Font("Segoe UI", 16F);
+            textBoxEtiqueta.Location = new Point(235, 68);
+            textBoxEtiqueta.Name = "textBoxEtiqueta";
+            textBoxEtiqueta.Size = new Size(367, 36);
+            textBoxEtiqueta.TabIndex = 12;
             // 
-            // textBox1
+            // comboBoxEmprestimoEtiqueta
             // 
-            textBox1.Font = new Font("Segoe UI", 16F);
-            textBox1.Location = new Point(235, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(367, 36);
-            textBox1.TabIndex = 7;
+            comboBoxEmprestimoEtiqueta.Font = new Font("Segoe UI", 16F);
+            comboBoxEmprestimoEtiqueta.FormattingEnabled = true;
+            comboBoxEmprestimoEtiqueta.Location = new Point(235, 133);
+            comboBoxEmprestimoEtiqueta.Name = "comboBoxEmprestimoEtiqueta";
+            comboBoxEmprestimoEtiqueta.Size = new Size(367, 38);
+            comboBoxEmprestimoEtiqueta.TabIndex = 9;
+            // 
+            // textBoxIdEtiqueta
+            // 
+            textBoxIdEtiqueta.Font = new Font("Segoe UI", 16F);
+            textBoxIdEtiqueta.Location = new Point(235, 3);
+            textBoxIdEtiqueta.Name = "textBoxIdEtiqueta";
+            textBoxIdEtiqueta.Size = new Size(367, 36);
+            textBoxIdEtiqueta.TabIndex = 7;
             // 
             // label6
             // 
@@ -480,15 +492,6 @@
             label8.Size = new Size(37, 30);
             label8.TabIndex = 6;
             label8.Text = "Id:";
-            // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Segoe UI", 16F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(235, 68);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(367, 38);
-            comboBox1.TabIndex = 8;
             // 
             // tableLayoutPanel9
             // 
@@ -526,7 +529,7 @@
             groupBox2.Size = new Size(336, 187);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
+            groupBox2.Text = "Posição atual";
             // 
             // labelValues
             // 
@@ -690,31 +693,30 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBoxNomeResponsavel;
-        private TextBox textBoxNome;
+        private TextBox textBoxResponsavelAmigo;
+        private TextBox textBoxNomeAmigo;
         private MaskedTextBox maskedTextBoxTelefone;
         private TableLayoutPanel tableLayoutPanel4;
-        private Button buttonLimpar;
-        private Button buttonDeletar;
-        private Button buttonAtualizar;
-        private Button buttonSalvar;
-        private TextBox textBoxId;
+        private Button buttonLimparAmigo;
+        private Button buttonDeletarAmigo;
+        private Button buttonAtualizarAmigo;
+        private Button buttonSalvarAmigo;
+        private TextBox textBoxIdAmigo;
         private Label label4;
         private DataGridView dataGridView1;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
-        private TextBox textBox1;
+        private TextBox textBoxIdEtiqueta;
         private Label label6;
         private Label label7;
         private Label label8;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox comboBoxEmprestimoEtiqueta;
         private TableLayoutPanel tableLayoutPanel8;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button buttonDeletarEtiqueta;
+        private Button buttonAtualizarEtiqueta;
+        private Button buttonSalvarEtiqueta;
+        private Button buttonLimparEtiqueta;
         private DataGridView dataGridView2;
         private TableLayoutPanel tableLayoutPanel9;
         private GroupBox groupBox1;
@@ -729,5 +731,6 @@
         private GroupBox groupBox2;
         private Label labelValues;
         private Panel panel1;
+        private TextBox textBoxEtiqueta;
     }
 }
