@@ -6,5 +6,18 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             InitializeComponent();
         }
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            LimparCamposAmigos();
+        }
+
+        private void LimparCamposAmigos()
+        {
+            textBoxId.Clear();
+            textBoxNome.Clear();
+            textBoxNomeResponsavel.Clear();
+            maskedTextBoxTelefone.Clear();
+        }
     }
 }
