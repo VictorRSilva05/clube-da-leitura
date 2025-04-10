@@ -9,11 +9,11 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloAmigo
 {
     public class RepositorioAmigo
     {
-        private List<Amigo> amigos;
+        public List<Amigo> amigos = new List<Amigo>();
 
         public RepositorioAmigo()
         {
-            amigos = new List<Amigo>();
+
         }
 
         public void Inserir(Amigo amigo)
