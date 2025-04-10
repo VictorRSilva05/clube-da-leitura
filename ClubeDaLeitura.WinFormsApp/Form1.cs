@@ -128,5 +128,30 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             PopularControlesAmigos(repositorioAmigo.amigos[e.RowIndex]);
         }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Bitmap pixelData = (Bitmap)pictureBox1.Image;
+            if (e.X > 0 && e.Y > 0 && e.X < pixelData.Width && e.Y < pixelData.Height)
+            {
+                Color color = pixelData.GetPixel(e.X, e.Y);
+                labelSmallScreen.BackColor = color;
+                labelValues.Text = "R " + color.R.ToString() + ", " + color.G.ToString() + ", " + color.B.ToString();
+            }
+
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            Bitmap pixelData = (Bitmap)pictureBox1.Image;
+            if (e.X > 0 && e.Y > 0 && e.X < pixelData.Width && e.Y < pixelData.Height)
+            {  
+                Color color = pixelData.GetPixel(e.X, e.Y);
+                textBoxRed.Text = color.R.ToString();
+                textBoxGreen.Text = color.G.ToString();
+                textBoxBlue.Text = color.B.ToString();
+                panel1.BackColor = color;
+            }
+        }
     }
 }

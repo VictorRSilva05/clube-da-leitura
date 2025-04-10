@@ -1,5 +1,6 @@
 ﻿namespace ClubeDaLeitura.WinFormsApp
 {
+    using System.IO;
     partial class Form1
     {
         /// <summary>
@@ -28,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPageAmigos = new TabPage();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -48,6 +50,34 @@
             buttonLimpar = new Button();
             dataGridView1 = new DataGridView();
             tabPageCaixas = new TabPage();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            tableLayoutPanel8 = new TableLayoutPanel();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            comboBox2 = new ComboBox();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            comboBox1 = new ComboBox();
+            tableLayoutPanel9 = new TableLayoutPanel();
+            pictureBox1 = new PictureBox();
+            groupBox2 = new GroupBox();
+            labelValues = new Label();
+            labelSmallScreen = new Label();
+            groupBox1 = new GroupBox();
+            panel1 = new Panel();
+            textBoxBlue = new TextBox();
+            textBoxGreen = new TextBox();
+            textBoxRed = new TextBox();
+            label10 = new Label();
+            label9 = new Label();
+            label5 = new Label();
+            dataGridView2 = new DataGridView();
             tabPageRevistas = new TabPage();
             tabPageEmprestimos = new TabPage();
             tabControl1.SuspendLayout();
@@ -57,6 +87,16 @@
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabPageCaixas.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -278,6 +318,7 @@
             // 
             // tabPageCaixas
             // 
+            tabPageCaixas.Controls.Add(tableLayoutPanel5);
             tabPageCaixas.Location = new Point(4, 24);
             tabPageCaixas.Name = "tabPageCaixas";
             tabPageCaixas.Padding = new Padding(3);
@@ -285,6 +326,305 @@
             tabPageCaixas.TabIndex = 1;
             tabPageCaixas.Text = "Caixas";
             tabPageCaixas.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
+            tableLayoutPanel5.Controls.Add(dataGridView2, 1, 0);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new Size(1866, 806);
+            tableLayoutPanel5.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.Controls.Add(tableLayoutPanel8, 0, 1);
+            tableLayoutPanel6.Controls.Add(tableLayoutPanel7, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(3, 3);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.Size = new Size(927, 800);
+            tableLayoutPanel6.TabIndex = 0;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 4;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel8.Controls.Add(button1, 3, 0);
+            tableLayoutPanel8.Controls.Add(button2, 2, 0);
+            tableLayoutPanel8.Controls.Add(button3, 1, 0);
+            tableLayoutPanel8.Controls.Add(button4, 0, 0);
+            tableLayoutPanel8.Location = new Point(3, 403);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 1;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel8.Size = new Size(921, 100);
+            tableLayoutPanel8.TabIndex = 2;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(693, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(224, 94);
+            button1.TabIndex = 3;
+            button1.Text = "Deletar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(463, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(224, 94);
+            button2.TabIndex = 2;
+            button2.Text = "Atualizar";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(233, 3);
+            button3.Name = "button3";
+            button3.Size = new Size(224, 94);
+            button3.TabIndex = 1;
+            button3.Text = "Salvar";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(3, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(224, 94);
+            button4.TabIndex = 0;
+            button4.Text = "Limpar";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 2;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.19001F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.80999F));
+            tableLayoutPanel7.Controls.Add(comboBox2, 1, 2);
+            tableLayoutPanel7.Controls.Add(textBox1, 1, 0);
+            tableLayoutPanel7.Controls.Add(label6, 0, 2);
+            tableLayoutPanel7.Controls.Add(label7, 0, 1);
+            tableLayoutPanel7.Controls.Add(label8, 0, 0);
+            tableLayoutPanel7.Controls.Add(comboBox1, 1, 1);
+            tableLayoutPanel7.Controls.Add(tableLayoutPanel9, 1, 3);
+            tableLayoutPanel7.Controls.Add(groupBox1, 0, 3);
+            tableLayoutPanel7.Location = new Point(3, 3);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 4;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6332664F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6332664F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6332664F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50.1002F));
+            tableLayoutPanel7.Size = new Size(921, 394);
+            tableLayoutPanel7.TabIndex = 1;
+            // 
+            // comboBox2
+            // 
+            comboBox2.Font = new Font("Segoe UI", 16F);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(235, 133);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(367, 38);
+            comboBox2.TabIndex = 9;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 16F);
+            textBox1.Location = new Point(235, 3);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(367, 36);
+            textBox1.TabIndex = 7;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(3, 130);
+            label6.Name = "label6";
+            label6.Size = new Size(203, 30);
+            label6.TabIndex = 1;
+            label6.Text = "Dias de empréstimo:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(3, 65);
+            label7.Name = "label7";
+            label7.Size = new Size(94, 30);
+            label7.TabIndex = 0;
+            label7.Text = "Etiqueta:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 16F);
+            label8.Location = new Point(3, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(37, 30);
+            label8.TabIndex = 6;
+            label8.Text = "Id:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.Font = new Font("Segoe UI", 16F);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(235, 68);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(367, 38);
+            comboBox1.TabIndex = 8;
+            // 
+            // tableLayoutPanel9
+            // 
+            tableLayoutPanel9.ColumnCount = 2;
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel9.Controls.Add(pictureBox1, 0, 0);
+            tableLayoutPanel9.Controls.Add(groupBox2, 1, 0);
+            tableLayoutPanel9.Location = new Point(235, 198);
+            tableLayoutPanel9.Name = "tableLayoutPanel9";
+            tableLayoutPanel9.RowCount = 1;
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel9.Size = new Size(683, 193);
+            tableLayoutPanel9.TabIndex = 10;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(335, 187);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseMove += pictureBox1_MouseMove;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(labelValues);
+            groupBox2.Controls.Add(labelSmallScreen);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Location = new Point(344, 3);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(336, 187);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "groupBox2";
+            // 
+            // labelValues
+            // 
+            labelValues.Location = new Point(45, 57);
+            labelValues.Name = "labelValues";
+            labelValues.Size = new Size(100, 23);
+            labelValues.TabIndex = 7;
+            // 
+            // labelSmallScreen
+            // 
+            labelSmallScreen.Location = new Point(45, 97);
+            labelSmallScreen.Name = "labelSmallScreen";
+            labelSmallScreen.Size = new Size(100, 23);
+            labelSmallScreen.TabIndex = 6;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(panel1);
+            groupBox1.Controls.Add(textBoxBlue);
+            groupBox1.Controls.Add(textBoxGreen);
+            groupBox1.Controls.Add(textBoxRed);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Dock = DockStyle.Fill;
+            groupBox1.Location = new Point(3, 198);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(226, 193);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Cor selecionada:";
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(31, 126);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(139, 52);
+            panel1.TabIndex = 6;
+            // 
+            // textBoxBlue
+            // 
+            textBoxBlue.Location = new Point(70, 97);
+            textBoxBlue.Name = "textBoxBlue";
+            textBoxBlue.ReadOnly = true;
+            textBoxBlue.Size = new Size(100, 23);
+            textBoxBlue.TabIndex = 5;
+            // 
+            // textBoxGreen
+            // 
+            textBoxGreen.Location = new Point(70, 68);
+            textBoxGreen.Name = "textBoxGreen";
+            textBoxGreen.ReadOnly = true;
+            textBoxGreen.Size = new Size(100, 23);
+            textBoxGreen.TabIndex = 4;
+            // 
+            // textBoxRed
+            // 
+            textBoxRed.Location = new Point(70, 39);
+            textBoxRed.Name = "textBoxRed";
+            textBoxRed.ReadOnly = true;
+            textBoxRed.Size = new Size(100, 23);
+            textBoxRed.TabIndex = 3;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(18, 97);
+            label10.Name = "label10";
+            label10.Size = new Size(30, 15);
+            label10.TabIndex = 2;
+            label10.Text = "Blue";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(18, 68);
+            label9.Name = "label9";
+            label9.Size = new Size(38, 15);
+            label9.TabIndex = 1;
+            label9.Text = "Green";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(21, 39);
+            label5.Name = "label5";
+            label5.Size = new Size(27, 15);
+            label5.TabIndex = 0;
+            label5.Text = "Red";
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.Location = new Point(936, 3);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(927, 800);
+            dataGridView2.TabIndex = 1;
             // 
             // tabPageRevistas
             // 
@@ -322,6 +662,18 @@
             tableLayoutPanel3.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tabPageCaixas.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel7.PerformLayout();
+            tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }
 
@@ -349,5 +701,33 @@
         private TextBox textBoxId;
         private Label label4;
         private DataGridView dataGridView1;
+        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel tableLayoutPanel6;
+        private TableLayoutPanel tableLayoutPanel7;
+        private TextBox textBox1;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private DataGridView dataGridView2;
+        private TableLayoutPanel tableLayoutPanel9;
+        private GroupBox groupBox1;
+        private TextBox textBoxBlue;
+        private TextBox textBoxGreen;
+        private TextBox textBoxRed;
+        private Label label10;
+        private Label label9;
+        private Label label5;
+        private PictureBox pictureBox1;
+        private Label labelSmallScreen;
+        private GroupBox groupBox2;
+        private Label labelValues;
+        private Panel panel1;
     }
 }
