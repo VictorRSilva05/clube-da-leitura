@@ -16,9 +16,28 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloAmigo
 
         }
 
-        public void Inserir(Amigo amigo)
+        public bool Inserir(Amigo amigo)
         {
+            
+            foreach (var item in amigos)
+            {
+                if (item.Nome == amigo.Nome)
+                {
+                    MessageBox.Show("Nome já cadastrado");
+                    return false;
+                }    
+            }
+
+            foreach (var item in amigos)
+            {
+                if (item.Telefone == amigo.Telefone)
+                {
+                    MessageBox.Show("Telefone já cadastrado");
+                    return false;
+                }
+            }
             amigos.Add(amigo);
+            return true;
         }
 
         public void Editar()
@@ -44,5 +63,6 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloAmigo
 
             return amigo;
         }
+
     }
 }

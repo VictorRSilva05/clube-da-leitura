@@ -59,11 +59,13 @@ namespace ClubeDaLeitura.WinFormsApp
             }
 
             amigo.Id = GeradorDeIds.GerarIdAmigo();
-            repositorioAmigo.Inserir(amigo);
-            MessageBox.Show($"Amigo {amigo.Nome} inserido!");
-            LimparCamposAmigos();
-            AtualizarDataGridViewAmigos();
-            InicializarComboBoxAmigosEmprestimos();
+            if (repositorioAmigo.Inserir(amigo))
+            {
+                MessageBox.Show($"Amigo {amigo.Nome} inserido!");
+                LimparCamposAmigos();
+                AtualizarDataGridViewAmigos();
+                InicializarComboBoxAmigosEmprestimos();
+            }
         }
 
         private void buttonSalvarRevista_Click(object sender, EventArgs e)
@@ -510,25 +512,25 @@ namespace ClubeDaLeitura.WinFormsApp
         }
         private void CargaInicialAmigos()
         {
-            Amigo amigo1 = new Amigo("Legolas", "Thranduil", "49 99999-9999");
+            Amigo amigo1 = new Amigo("Legolas", "Thranduil", "(49) 99999-9999");
             amigo1.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo1);
-            Amigo amigo2 = new Amigo("Gandalf", "Saruman", "49 88888-8888");
+            Amigo amigo2 = new Amigo("Gandalf", "Saruman", "(49) 88888-8888");
             amigo2.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo2);
-            Amigo amigo3 = new Amigo("Frodo", "Bilbo", "49 77777-7777");
+            Amigo amigo3 = new Amigo("Frodo", "Bilbo", "(49) 77777-7777");
             amigo3.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo3);
-            Amigo amigo4 = new Amigo("Sam", "Bilbo", "49 66666-6666");
+            Amigo amigo4 = new Amigo("Sam", "Bilbo", "(49) 66666-6666");
             amigo4.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo4);
-            Amigo amigo5 = new Amigo("Aragorn", "Arwen", "49 55555-5555");
+            Amigo amigo5 = new Amigo("Aragorn", "Arwen", "(49) 55555-5555");
             amigo5.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo5);
-            Amigo amigo6 = new Amigo("Gimli", "Gloin", "49 44444-4444");
+            Amigo amigo6 = new Amigo("Gimli", "Gloin", "(49) 44444-4444");
             amigo6.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo6);
-            Amigo amigo7 = new Amigo("Boromir", "Denethor", "49 33333-3333");
+            Amigo amigo7 = new Amigo("Boromir", "Denethor", "(49) 33333-3333");
             amigo7.Id = GeradorDeIds.GerarIdAmigo();
             repositorioAmigo.Inserir(amigo7);
         }
