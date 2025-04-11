@@ -209,6 +209,7 @@
             textBoxIdAmigo.Name = "textBoxIdAmigo";
             textBoxIdAmigo.Size = new Size(367, 36);
             textBoxIdAmigo.TabIndex = 7;
+            textBoxIdAmigo.KeyPress += textBoxIdAmigo_KeyPress;
             // 
             // label3
             // 
@@ -489,6 +490,7 @@
             textBoxIdEtiqueta.Name = "textBoxIdEtiqueta";
             textBoxIdEtiqueta.Size = new Size(367, 36);
             textBoxIdEtiqueta.TabIndex = 7;
+            textBoxIdEtiqueta.KeyPress += textBoxIdEtiqueta_KeyPress;
             // 
             // label6
             // 
@@ -744,6 +746,7 @@
             textBoxIdRevista.Name = "textBoxIdRevista";
             textBoxIdRevista.Size = new Size(367, 36);
             textBoxIdRevista.TabIndex = 7;
+            textBoxIdRevista.KeyPress += textBoxIdRevista_KeyPress;
             // 
             // label11
             // 
@@ -772,6 +775,7 @@
             textBoxNumeroEdicaoRevista.Name = "textBoxNumeroEdicaoRevista";
             textBoxNumeroEdicaoRevista.Size = new Size(367, 36);
             textBoxNumeroEdicaoRevista.TabIndex = 4;
+            textBoxNumeroEdicaoRevista.KeyPress += textBoxNumeroEdicaoRevista_KeyPress;
             // 
             // label13
             // 

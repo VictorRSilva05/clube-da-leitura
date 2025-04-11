@@ -10,6 +10,7 @@ namespace ClubeDaLeitura.WinFormsApp.Compartilhado
     {
         public static long IdAmigo = 0;
         public static long IdCaixa = 0;
+        public static long IdRevista = 0;
 
         public static long GerarIdAmigo()
         {
@@ -21,6 +22,12 @@ namespace ClubeDaLeitura.WinFormsApp.Compartilhado
         {
             IdCaixa++;
             return IdCaixa;
+        }
+
+        internal static long GerarIdRevista()
+        {
+            IdRevista++;
+            return IdRevista;
         }
     }
 }

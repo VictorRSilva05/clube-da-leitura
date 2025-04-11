@@ -21,6 +21,15 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
         }
 
+        public Revista(string titulo, int numeroDaEdicao, DateTime anoDePublicacao, string statusDeEmprestimo, Caixa caixa)
+        {
+            Titulo = titulo;
+            NumeroDaEdicao = numeroDaEdicao;
+            AnoDePublicacao = anoDePublicacao;
+            StatusDeEmprestimo = statusDeEmprestimo;
+            Caixa = caixa;
+        }
+
         public void Validar()
         {
 

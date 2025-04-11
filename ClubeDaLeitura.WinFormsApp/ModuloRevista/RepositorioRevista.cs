@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,11 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 {
     public class RepositorioRevista
     {
-        private List<Revista> revistas = new List<Revista>();
+        public List<Revista> revistas = new List<Revista>();
 
-        public void Inserir()
+        public void Inserir(Revista revista)
         {
-
+            revistas.Add(revista);
         }
 
         public void Editar()
@@ -20,9 +21,9 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
         }
 
-        public void Excluir()
+        public void Excluir(Revista revista)
         {
-
+            revistas.Remove(revista);
         }
 
         public void SelecionarTodos()
@@ -30,9 +31,13 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
         }
 
-        public void SelecionarPorId()
+        public Revista SelecionarPorId(string auxId)
         {
+            long id = Convert.ToInt64(auxId);
 
+            var revista = revistas.Find(e => e.Id == id);
+
+            return revista;
         }
     }
 }
