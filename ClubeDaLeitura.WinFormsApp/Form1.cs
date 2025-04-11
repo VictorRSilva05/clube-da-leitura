@@ -13,7 +13,9 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             InitializeComponent();
             InicializarDataGridViewAmigos();
+            InicializarDataGridViewCaixas();
             AtualizarDataGridViewAmigos();
+            AtualizarDataGridViewCaixas();
             InicializarComboBoxEmprestimosEtiqueta();
         }
 
@@ -69,6 +71,7 @@ namespace ClubeDaLeitura.WinFormsApp
             repositorioCaixa.Inserir(caixa);
             MessageBox.Show($"Caixa {caixa.Etiqueta} inserida!");
             LimparCamposCaixa();
+            AtualizarDataGridViewCaixas();
 
         }
         private void LimparCamposAmigos()
@@ -121,6 +124,8 @@ namespace ClubeDaLeitura.WinFormsApp
             }
             MessageBox.Show($"Caixa com o id {textBoxIdEtiqueta.Text} foi excluído.");
             LimparCamposCaixa();
+            AtualizarDataGridViewCaixas();
+
         }
 
         private void buttonAtualizar_Click(object sender, EventArgs e)
@@ -176,6 +181,7 @@ namespace ClubeDaLeitura.WinFormsApp
 
                 MessageBox.Show($"Caixa {caixa.Etiqueta} Atualizada!");
                 LimparCamposCaixa();
+                AtualizarDataGridViewCaixas();
             }
         }
         private void InicializarDataGridViewAmigos()
@@ -190,12 +196,32 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView1.Columns[3].Width = 250;
         }
 
+        private void InicializarDataGridViewCaixas()
+        {
+            dataGridView2.Columns.Add("Id", "Id");
+            dataGridView2.Columns[0].Width= 200;
+            dataGridView2.Columns.Add("Etiqueta", "Etiqueta");
+            dataGridView2.Columns[1].Width = 250;
+            dataGridView2.Columns.Add("Cor", "Cor");
+            dataGridView2.Columns[2].Width = 250;
+            dataGridView2.Columns.Add("PrazoDeEmprestimo", "Prazo de empréstimo");
+            dataGridView2.Columns[3].Width = 250;
+        }
         private void AtualizarDataGridViewAmigos()
         {
             dataGridView1.Rows.Clear();
             foreach (var amigo in repositorioAmigo.amigos)
             {
                 dataGridView1.Rows.Add(amigo.Id, amigo.Nome, amigo.Responsavel, amigo.Telefone);
+            }
+        }
+
+        private void AtualizarDataGridViewCaixas()
+        {
+            dataGridView2.Rows.Clear();
+            foreach (var caixa in repositorioCaixa.caixas)
+            {
+                dataGridView2.Rows.Add(caixa.Id, caixa.Etiqueta, caixa.DiasDeEmprestimo, caixa.Cor);
             }
         }
 
