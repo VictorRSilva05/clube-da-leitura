@@ -12,6 +12,8 @@ namespace ClubeDaLeitura.WinFormsApp
         public Form1()
         {
             InitializeComponent();
+            CargaInicialAmigos();
+            CargaInicialCaixas();
             InicializarDataGridViewAmigos();
             InicializarDataGridViewCaixas();
             AtualizarDataGridViewAmigos();
@@ -221,7 +223,7 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView2.Rows.Clear();
             foreach (var caixa in repositorioCaixa.caixas)
             {
-                dataGridView2.Rows.Add(caixa.Id, caixa.Etiqueta, caixa.DiasDeEmprestimo, caixa.Cor);
+                dataGridView2.Rows.Add(caixa.Id, caixa.Etiqueta, caixa.Cor, caixa.DiasDeEmprestimo);
             }
         }
 
@@ -272,6 +274,63 @@ namespace ClubeDaLeitura.WinFormsApp
 
             comboBoxEmprestimoEtiqueta.DataSource = list;
             comboBoxEmprestimoEtiqueta.SelectedIndex = -1;
+        }
+
+        private void CargaInicialAmigos()
+        {
+            Amigo amigo1 = new Amigo("Legolas", "Thranduil", "49 99999-9999");
+            amigo1.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo1);
+            Amigo amigo2 = new Amigo("Gandalf", "Saruman", "49 88888-8888");
+            amigo2.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo2);
+            Amigo amigo3 = new Amigo("Frodo", "Bilbo", "49 77777-7777");
+            amigo3.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo3);
+            Amigo amigo4 = new Amigo("Sam", "Bilbo", "49 66666-6666");
+            amigo4.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo4);
+            Amigo amigo5 = new Amigo("Aragorn", "Arwen", "49 55555-5555");
+            amigo5.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo5);
+            Amigo amigo6 = new Amigo("Gimli", "Gloin", "49 44444-4444");
+            amigo6.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo6);
+            Amigo amigo7 = new Amigo("Boromir", "Denethor", "49 33333-3333");
+            amigo7.Id = GeradorDeIds.GerarIdAmigo();
+            repositorioAmigo.Inserir(amigo7);
+        }
+
+        private void CargaInicialCaixas()
+        {
+            Caixa caixa1 = new Caixa("Terror", "255 0 0", 3);
+            caixa1.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa1);
+            Caixa caixa2 = new Caixa("Aventura", "0 255 0", 5);
+            caixa2.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa2);
+            Caixa caixa3 = new Caixa("Romance", "0 0 255", 7);
+            caixa3.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa3);
+            Caixa caixa4 = new Caixa("Ficção", "255 255 0", 3);
+            caixa4.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa4);
+            Caixa caixa5 = new Caixa("Fantasia", "255 0 255", 5);
+            caixa5.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa5);
+            Caixa caixa6 = new Caixa("Mistério", "0 255 255", 7);
+            caixa6.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa6);
+            Caixa caixa7 = new Caixa("História", "128 128 128", 3);
+            caixa7.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa7);
+            Caixa caixa8 = new Caixa("Biografia", "255 165 0", 5);
+            caixa8.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa8);
+            Caixa caixa9 = new Caixa("Autoajuda", "128 0 128", 7);
+            caixa9.Id = GeradorDeIds.GerarIdCaixa();
+            repositorioCaixa.Inserir(caixa9);
+
         }
     }
 }
