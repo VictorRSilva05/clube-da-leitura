@@ -121,6 +121,8 @@
             dateTimePickerEmprestimoEmprestimo = new DateTimePicker();
             label19 = new Label();
             dataGridView4 = new DataGridView();
+            label23 = new Label();
+            label24 = new Label();
             tabControl1.SuspendLayout();
             tabPageAmigos.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -177,6 +179,8 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.Azure;
+            tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -372,6 +376,7 @@
             // 
             // tabPageCaixas
             // 
+            tabPageCaixas.BackColor = Color.Azure;
             tabPageCaixas.Controls.Add(tableLayoutPanel5);
             tabPageCaixas.Location = new Point(4, 24);
             tabPageCaixas.Name = "tabPageCaixas";
@@ -379,7 +384,6 @@
             tabPageCaixas.Size = new Size(1872, 812);
             tabPageCaixas.TabIndex = 1;
             tabPageCaixas.Text = "Caixas";
-            tabPageCaixas.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -687,6 +691,7 @@
             // 
             // tabPageRevistas
             // 
+            tabPageRevistas.BackColor = Color.Azure;
             tabPageRevistas.Controls.Add(tableLayoutPanel10);
             tabPageRevistas.Location = new Point(4, 24);
             tabPageRevistas.Name = "tabPageRevistas";
@@ -694,7 +699,6 @@
             tabPageRevistas.Size = new Size(1872, 812);
             tabPageRevistas.TabIndex = 2;
             tabPageRevistas.Text = "Revistas";
-            tabPageRevistas.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel10
             // 
@@ -949,6 +953,7 @@
             // 
             // tableLayoutPanel14
             // 
+            tableLayoutPanel14.BackColor = Color.Azure;
             tableLayoutPanel14.ColumnCount = 2;
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -1176,14 +1181,41 @@
             dataGridView4.TabIndex = 1;
             dataGridView4.CellClick += dataGridView4_CellClick;
             // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.BackColor = Color.Transparent;
+            label23.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label23.Location = new Point(22, 40);
+            label23.Name = "label23";
+            label23.Size = new Size(305, 50);
+            label23.TabIndex = 1;
+            label23.Text = "Clube da Leitura";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.BackColor = Color.Transparent;
+            label24.Font = new Font("Segoe UI", 12F);
+            label24.Location = new Point(12, 995);
+            label24.Name = "label24";
+            label24.Size = new Size(339, 21);
+            label24.TabIndex = 2;
+            label24.Text = "Victor R. Silva. Academia do programador 2025";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.maxresdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(label24);
+            Controls.Add(label23);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             tabControl1.ResumeLayout(false);
             tabPageAmigos.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -1219,6 +1251,7 @@
             tableLayoutPanel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -1314,5 +1347,7 @@
         private Button buttonDevolverEmprestimo;
         private Button buttonLimparEmprestimo;
         private Button buttonEmprestarEmprestimo;
+        private Label label23;
+        private Label label24;
     }
 }
