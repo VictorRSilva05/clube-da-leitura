@@ -98,6 +98,52 @@ namespace ClubeDaLeitura.WinFormsApp
             InicializarComboBoxRevistasEmprestimos();
         }
 
+        private void buttonEmprestarEmprestimo_Click(object sender, EventArgs e)
+        {
+            int indexAmigo = comboBoxAmigoEmprestimo.SelectedIndex + 1;
+            int indexRevista = comboBoxRevistaEmprestimo.SelectedIndex + 1;
+
+            if (indexAmigo == 0 || indexRevista == 0)
+            {
+                MessageBox.Show("Selecione um amigo e uma revista.");
+                return;
+            }
+
+            Amigo amigo = repositorioAmigo.SelecionarPorId(indexAmigo.ToString());
+            Revista revista = repositorioRevista.SelecionarPorId(indexRevista.ToString());
+
+            Emprestimo emprestimo = new Emprestimo(amigo, revista);
+
+            string erros = emprestimo.Validar();
+
+            if (erros.Length > 0)
+            {
+                MessageBox.Show(erros);
+                return;
+            }
+
+            emprestimo.Id = GeradorDeIds.GerarIdEmprestimo();
+            repositorioEmprestimo.Inserir(emprestimo);
+            MessageBox.Show($"Empréstimo de {revista.Titulo} para {amigo.Nome} registrado!");
+            LimparCamposEmprestimo();
+            AtualizarDataGridViewEmprestimos();
+        }
+
+        private void buttonDevolverEmprestimo_Click(object sender, EventArgs e)
+        {
+            string index = textBoxIdEmprestimo.Text;
+            if (string.IsNullOrEmpty(index))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            var emprestimo = repositorioEmprestimo.SelecionarPorId(index);
+            repositorioEmprestimo.RegistrarDevolucao(emprestimo);
+            MessageBox.Show($"Emprestimo de {emprestimo.Revista.Titulo} de {emprestimo.Amigo.Nome} foi devoluído!");
+            AtualizarDataGridViewEmprestimos();
+            LimparCamposEmprestimo();
+        }
+
         private void buttonSalvarEtiqueta_Click(object sender, EventArgs e)
         {
             string etiqueta = textBoxEtiqueta.Text;
@@ -121,6 +167,8 @@ namespace ClubeDaLeitura.WinFormsApp
             AtualizarDataGridViewCaixas();
 
         }
+
+
         private void LimparCamposAmigos()
         {
             textBoxIdAmigo.Clear();
@@ -379,7 +427,7 @@ namespace ClubeDaLeitura.WinFormsApp
         private void AtualizarDataGridViewEmprestimos()
         {
             dataGridView4.Rows.Clear();
-            foreach(var emprestimo in repositorioEmprestimo.emprestimos)
+            foreach (var emprestimo in repositorioEmprestimo.emprestimos)
             {
                 dataGridView4.Rows.Add(emprestimo.Id, emprestimo.Amigo.Nome, emprestimo.Revista.Titulo, emprestimo.DataEmprestimo, emprestimo.DataDevolucao, emprestimo.Situacao);
             }
@@ -390,6 +438,16 @@ namespace ClubeDaLeitura.WinFormsApp
             textBoxNomeAmigo.Text = amigo.Nome.ToString();
             textBoxResponsavelAmigo.Text = amigo.Responsavel.ToString();
             maskedTextBoxTelefone.Text = amigo.Telefone.ToString();
+        }
+
+        private void PopularControlesEmprestimo(Emprestimo emprestimo)
+        {
+            textBoxIdEmprestimo.Text = emprestimo.Id.ToString();
+            comboBoxAmigoEmprestimo.SelectedItem = emprestimo.Amigo.Nome;
+            comboBoxRevistaEmprestimo.SelectedItem = emprestimo.Revista.Titulo;
+            dateTimePickerEmprestimoEmprestimo.Value = emprestimo.DataEmprestimo;
+            dateTimePickerDevolucaoEmprestimo.Value = emprestimo.DataDevolucao;
+            textBoxStatusEmprestimo.Text = emprestimo.Situacao;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -557,6 +615,11 @@ namespace ClubeDaLeitura.WinFormsApp
             comboBoxCaixaRevista.SelectedItem = revista.Caixa.Etiqueta;
         }
 
+        private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PopularControlesEmprestimo(repositorioEmprestimo.emprestimos[e.RowIndex]);
+        }
+
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             PopularControlesCaixa(repositorioCaixa.caixas[e.RowIndex]);
@@ -618,5 +681,6 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             PermitirSomenteNumeros(sender, e);
         }
+
     }
 }

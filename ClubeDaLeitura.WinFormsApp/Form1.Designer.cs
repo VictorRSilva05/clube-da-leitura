@@ -1001,6 +1001,7 @@
             buttonDevolverEmprestimo.TabIndex = 2;
             buttonDevolverEmprestimo.Text = "Devolver";
             buttonDevolverEmprestimo.UseVisualStyleBackColor = true;
+            buttonDevolverEmprestimo.Click += buttonDevolverEmprestimo_Click;
             // 
             // buttonLimparEmprestimo
             // 
@@ -1020,6 +1021,7 @@
             buttonEmprestarEmprestimo.TabIndex = 1;
             buttonEmprestarEmprestimo.Text = "Emprestar";
             buttonEmprestarEmprestimo.UseVisualStyleBackColor = true;
+            buttonEmprestarEmprestimo.Click += buttonEmprestarEmprestimo_Click;
             // 
             // tableLayoutPanel16
             // 
@@ -1172,6 +1174,7 @@
             dataGridView4.Name = "dataGridView4";
             dataGridView4.Size = new Size(927, 800);
             dataGridView4.TabIndex = 1;
+            dataGridView4.CellClick += dataGridView4_CellClick;
             // 
             // Form1
             // 
