@@ -79,6 +79,27 @@
             label5 = new Label();
             dataGridView2 = new DataGridView();
             tabPageRevistas = new TabPage();
+            tableLayoutPanel10 = new TableLayoutPanel();
+            tableLayoutPanel11 = new TableLayoutPanel();
+            tableLayoutPanel13 = new TableLayoutPanel();
+            label15 = new Label();
+            textBoxIdRevista = new TextBox();
+            label11 = new Label();
+            label12 = new Label();
+            textBoxNumeroEdicaoRevista = new TextBox();
+            label13 = new Label();
+            label14 = new Label();
+            textBoxTituloRevista = new TextBox();
+            label16 = new Label();
+            dateTimePickerAnoPublicacaoRevista = new DateTimePicker();
+            textBoxStatusRevista = new TextBox();
+            comboBoxCaixaRevista = new ComboBox();
+            tableLayoutPanel12 = new TableLayoutPanel();
+            buttonDeletarRevista = new Button();
+            buttonAtualizarRevista = new Button();
+            buttonLimparRevista = new Button();
+            buttonSalvarRevista = new Button();
+            dataGridView3 = new DataGridView();
             tabPageEmprestimos = new TabPage();
             tabControl1.SuspendLayout();
             tabPageAmigos.SuspendLayout();
@@ -97,6 +118,12 @@
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabPageRevistas.SuspendLayout();
+            tableLayoutPanel10.SuspendLayout();
+            tableLayoutPanel11.SuspendLayout();
+            tableLayoutPanel13.SuspendLayout();
+            tableLayoutPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -628,9 +655,11 @@
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(927, 800);
             dataGridView2.TabIndex = 1;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // tabPageRevistas
             // 
+            tabPageRevistas.Controls.Add(tableLayoutPanel10);
             tabPageRevistas.Location = new Point(4, 24);
             tabPageRevistas.Name = "tabPageRevistas";
             tabPageRevistas.Padding = new Padding(3);
@@ -638,6 +667,239 @@
             tabPageRevistas.TabIndex = 2;
             tabPageRevistas.Text = "Revistas";
             tabPageRevistas.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel10
+            // 
+            tableLayoutPanel10.ColumnCount = 2;
+            tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel10.Controls.Add(tableLayoutPanel11, 0, 0);
+            tableLayoutPanel10.Controls.Add(dataGridView3, 1, 0);
+            tableLayoutPanel10.Dock = DockStyle.Fill;
+            tableLayoutPanel10.Location = new Point(3, 3);
+            tableLayoutPanel10.Name = "tableLayoutPanel10";
+            tableLayoutPanel10.RowCount = 1;
+            tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel10.Size = new Size(1866, 806);
+            tableLayoutPanel10.TabIndex = 0;
+            // 
+            // tableLayoutPanel11
+            // 
+            tableLayoutPanel11.ColumnCount = 1;
+            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel11.Controls.Add(tableLayoutPanel13, 0, 0);
+            tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 0, 1);
+            tableLayoutPanel11.Dock = DockStyle.Fill;
+            tableLayoutPanel11.Location = new Point(3, 3);
+            tableLayoutPanel11.Name = "tableLayoutPanel11";
+            tableLayoutPanel11.RowCount = 2;
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel11.Size = new Size(927, 800);
+            tableLayoutPanel11.TabIndex = 0;
+            // 
+            // tableLayoutPanel13
+            // 
+            tableLayoutPanel13.ColumnCount = 2;
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.19001F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.80999F));
+            tableLayoutPanel13.Controls.Add(label15, 0, 4);
+            tableLayoutPanel13.Controls.Add(textBoxIdRevista, 1, 0);
+            tableLayoutPanel13.Controls.Add(label11, 0, 3);
+            tableLayoutPanel13.Controls.Add(label12, 0, 2);
+            tableLayoutPanel13.Controls.Add(textBoxNumeroEdicaoRevista, 1, 2);
+            tableLayoutPanel13.Controls.Add(label13, 0, 1);
+            tableLayoutPanel13.Controls.Add(label14, 0, 0);
+            tableLayoutPanel13.Controls.Add(textBoxTituloRevista, 1, 1);
+            tableLayoutPanel13.Controls.Add(label16, 0, 5);
+            tableLayoutPanel13.Controls.Add(dateTimePickerAnoPublicacaoRevista, 1, 3);
+            tableLayoutPanel13.Controls.Add(textBoxStatusRevista, 1, 4);
+            tableLayoutPanel13.Controls.Add(comboBoxCaixaRevista, 1, 5);
+            tableLayoutPanel13.Location = new Point(3, 3);
+            tableLayoutPanel13.Name = "tableLayoutPanel13";
+            tableLayoutPanel13.RowCount = 6;
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel13.Size = new Size(921, 259);
+            tableLayoutPanel13.TabIndex = 4;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.Location = new Point(3, 172);
+            label15.Name = "label15";
+            label15.Size = new Size(74, 30);
+            label15.TabIndex = 8;
+            label15.Text = "Status:";
+            // 
+            // textBoxIdRevista
+            // 
+            textBoxIdRevista.Font = new Font("Segoe UI", 16F);
+            textBoxIdRevista.Location = new Point(235, 3);
+            textBoxIdRevista.Name = "textBoxIdRevista";
+            textBoxIdRevista.Size = new Size(367, 36);
+            textBoxIdRevista.TabIndex = 7;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(3, 129);
+            label11.Name = "label11";
+            label11.Size = new Size(191, 30);
+            label11.TabIndex = 2;
+            label11.Text = "Ano de publicação:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(3, 86);
+            label12.Name = "label12";
+            label12.Size = new Size(190, 30);
+            label12.TabIndex = 1;
+            label12.Text = "Número da edição:";
+            // 
+            // textBoxNumeroEdicaoRevista
+            // 
+            textBoxNumeroEdicaoRevista.Font = new Font("Segoe UI", 16F);
+            textBoxNumeroEdicaoRevista.Location = new Point(235, 89);
+            textBoxNumeroEdicaoRevista.Name = "textBoxNumeroEdicaoRevista";
+            textBoxNumeroEdicaoRevista.Size = new Size(367, 36);
+            textBoxNumeroEdicaoRevista.TabIndex = 4;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(3, 43);
+            label13.Name = "label13";
+            label13.Size = new Size(70, 30);
+            label13.TabIndex = 0;
+            label13.Text = "Título:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 16F);
+            label14.Location = new Point(3, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(37, 30);
+            label14.TabIndex = 6;
+            label14.Text = "Id:";
+            // 
+            // textBoxTituloRevista
+            // 
+            textBoxTituloRevista.Font = new Font("Segoe UI", 16F);
+            textBoxTituloRevista.Location = new Point(235, 46);
+            textBoxTituloRevista.Name = "textBoxTituloRevista";
+            textBoxTituloRevista.Size = new Size(367, 36);
+            textBoxTituloRevista.TabIndex = 3;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.Location = new Point(3, 215);
+            label16.Name = "label16";
+            label16.Size = new Size(68, 30);
+            label16.TabIndex = 9;
+            label16.Text = "Caixa:";
+            // 
+            // dateTimePickerAnoPublicacaoRevista
+            // 
+            dateTimePickerAnoPublicacaoRevista.CustomFormat = "";
+            dateTimePickerAnoPublicacaoRevista.Font = new Font("Segoe UI", 16F);
+            dateTimePickerAnoPublicacaoRevista.Location = new Point(235, 132);
+            dateTimePickerAnoPublicacaoRevista.Name = "dateTimePickerAnoPublicacaoRevista";
+            dateTimePickerAnoPublicacaoRevista.Size = new Size(367, 36);
+            dateTimePickerAnoPublicacaoRevista.TabIndex = 10;
+            // 
+            // textBoxStatusRevista
+            // 
+            textBoxStatusRevista.Font = new Font("Segoe UI", 16F);
+            textBoxStatusRevista.Location = new Point(235, 175);
+            textBoxStatusRevista.Name = "textBoxStatusRevista";
+            textBoxStatusRevista.ReadOnly = true;
+            textBoxStatusRevista.Size = new Size(367, 36);
+            textBoxStatusRevista.TabIndex = 11;
+            // 
+            // comboBoxCaixaRevista
+            // 
+            comboBoxCaixaRevista.Font = new Font("Segoe UI", 16F);
+            comboBoxCaixaRevista.FormattingEnabled = true;
+            comboBoxCaixaRevista.Location = new Point(235, 218);
+            comboBoxCaixaRevista.Name = "comboBoxCaixaRevista";
+            comboBoxCaixaRevista.Size = new Size(367, 38);
+            comboBoxCaixaRevista.TabIndex = 12;
+            // 
+            // tableLayoutPanel12
+            // 
+            tableLayoutPanel12.ColumnCount = 4;
+            tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel12.Controls.Add(buttonDeletarRevista, 3, 0);
+            tableLayoutPanel12.Controls.Add(buttonAtualizarRevista, 2, 0);
+            tableLayoutPanel12.Controls.Add(buttonLimparRevista, 0, 0);
+            tableLayoutPanel12.Controls.Add(buttonSalvarRevista, 1, 0);
+            tableLayoutPanel12.Location = new Point(3, 403);
+            tableLayoutPanel12.Name = "tableLayoutPanel12";
+            tableLayoutPanel12.RowCount = 1;
+            tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel12.Size = new Size(921, 100);
+            tableLayoutPanel12.TabIndex = 3;
+            // 
+            // buttonDeletarRevista
+            // 
+            buttonDeletarRevista.Location = new Point(693, 3);
+            buttonDeletarRevista.Name = "buttonDeletarRevista";
+            buttonDeletarRevista.Size = new Size(224, 94);
+            buttonDeletarRevista.TabIndex = 3;
+            buttonDeletarRevista.Text = "Deletar";
+            buttonDeletarRevista.UseVisualStyleBackColor = true;
+            // 
+            // buttonAtualizarRevista
+            // 
+            buttonAtualizarRevista.Location = new Point(463, 3);
+            buttonAtualizarRevista.Name = "buttonAtualizarRevista";
+            buttonAtualizarRevista.Size = new Size(224, 94);
+            buttonAtualizarRevista.TabIndex = 2;
+            buttonAtualizarRevista.Text = "Atualizar";
+            buttonAtualizarRevista.UseVisualStyleBackColor = true;
+            // 
+            // buttonLimparRevista
+            // 
+            buttonLimparRevista.Location = new Point(3, 3);
+            buttonLimparRevista.Name = "buttonLimparRevista";
+            buttonLimparRevista.Size = new Size(224, 94);
+            buttonLimparRevista.TabIndex = 0;
+            buttonLimparRevista.Text = "Limpar";
+            buttonLimparRevista.UseVisualStyleBackColor = true;
+            // 
+            // buttonSalvarRevista
+            // 
+            buttonSalvarRevista.Location = new Point(233, 3);
+            buttonSalvarRevista.Name = "buttonSalvarRevista";
+            buttonSalvarRevista.Size = new Size(224, 94);
+            buttonSalvarRevista.TabIndex = 1;
+            buttonSalvarRevista.Text = "Salvar";
+            buttonSalvarRevista.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Dock = DockStyle.Fill;
+            dataGridView3.Location = new Point(936, 3);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.Size = new Size(927, 800);
+            dataGridView3.TabIndex = 1;
             // 
             // tabPageEmprestimos
             // 
@@ -677,6 +939,13 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tabPageRevistas.ResumeLayout(false);
+            tableLayoutPanel10.ResumeLayout(false);
+            tableLayoutPanel11.ResumeLayout(false);
+            tableLayoutPanel13.ResumeLayout(false);
+            tableLayoutPanel13.PerformLayout();
+            tableLayoutPanel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }
 
@@ -732,5 +1001,26 @@
         private Label labelValues;
         private Panel panel1;
         private TextBox textBoxEtiqueta;
+        private TableLayoutPanel tableLayoutPanel10;
+        private TableLayoutPanel tableLayoutPanel11;
+        private TableLayoutPanel tableLayoutPanel12;
+        private Button buttonDeletarRevista;
+        private Button buttonAtualizarRevista;
+        private Button buttonLimparRevista;
+        private Button buttonSalvarRevista;
+        private DataGridView dataGridView3;
+        private TableLayoutPanel tableLayoutPanel13;
+        private TextBox textBoxIdRevista;
+        private Label label11;
+        private Label label12;
+        private TextBox textBoxNumeroEdicaoRevista;
+        private Label label13;
+        private Label label14;
+        private TextBox textBoxTituloRevista;
+        private Label label15;
+        private Label label16;
+        private DateTimePicker dateTimePickerAnoPublicacaoRevista;
+        private TextBox textBoxStatusRevista;
+        private ComboBox comboBoxCaixaRevista;
     }
 }

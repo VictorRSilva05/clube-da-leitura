@@ -11,7 +11,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
     {
         public long Id { get; set; }
         public string Titulo { get; set; }
-        public string NumeroDaEdicao { get; set; }
+        public int NumeroDaEdicao { get; set; }
         public DateTime AnoDePublicacao { get; set; }
         public string StatusDeEmprestimo { get; set; }
         public Caixa Caixa { get; set; }

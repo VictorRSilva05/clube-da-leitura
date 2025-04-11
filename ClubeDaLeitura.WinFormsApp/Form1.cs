@@ -201,7 +201,7 @@ namespace ClubeDaLeitura.WinFormsApp
         private void InicializarDataGridViewCaixas()
         {
             dataGridView2.Columns.Add("Id", "Id");
-            dataGridView2.Columns[0].Width= 200;
+            dataGridView2.Columns[0].Width = 200;
             dataGridView2.Columns.Add("Etiqueta", "Etiqueta");
             dataGridView2.Columns[1].Width = 250;
             dataGridView2.Columns.Add("Cor", "Cor");
@@ -331,6 +331,23 @@ namespace ClubeDaLeitura.WinFormsApp
             caixa9.Id = GeradorDeIds.GerarIdCaixa();
             repositorioCaixa.Inserir(caixa9);
 
+        }
+
+        private void PopularControlesCaixa(Caixa caixa)
+        {
+            textBoxIdEtiqueta.Text = caixa.Id.ToString();
+            textBoxEtiqueta.Text = caixa.Etiqueta.ToString();
+            comboBoxEmprestimoEtiqueta.SelectedItem = caixa.DiasDeEmprestimo;
+            string[] cor = caixa.Cor.Split(' ');
+            textBoxRed.Text = cor[0];
+            textBoxGreen.Text = cor[1];
+            textBoxBlue.Text = cor[2];
+            panel1.BackColor = Color.FromArgb(Convert.ToInt32(cor[0]), Convert.ToInt32(cor[1]), Convert.ToInt32(cor[2]));
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PopularControlesCaixa(repositorioCaixa.caixas[e.RowIndex]);
         }
     }
 }
