@@ -24,6 +24,7 @@ namespace ClubeDaLeitura.WinFormsApp
             AtualizarDataGridViewCaixas();
             AtualizarDataGridViewRevistas();
             InicializarComboBoxEmprestimosEtiqueta();
+            InicializarComboBoxCaixaRevista();
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -56,6 +57,37 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Amigo {amigo.Nome} inserido!");
             LimparCamposAmigos();
             AtualizarDataGridViewAmigos();
+        }
+
+        private void buttonSalvarRevista_Click(object sender, EventArgs e)
+        {
+            string titulo = textBoxTituloRevista.Text;
+            string auxNumeroDaEdicao = textBoxNumeroEdicaoRevista.Text;
+            if (string.IsNullOrEmpty(auxNumeroDaEdicao))
+            {
+                MessageBox.Show("O campo 'Número da Edição' é obrigatório.");
+                return;
+            }
+            int numeroDaEdicao = Convert.ToInt32(auxNumeroDaEdicao);
+            DateTime anoDePublicacao = dateTimePickerAnoPublicacaoRevista.Value;
+            int index = comboBoxCaixaRevista.SelectedIndex + 1;
+            Caixa caixa = repositorioCaixa.SelecionarPorId(index.ToString());
+
+            Revista revista = new Revista(titulo, numeroDaEdicao, anoDePublicacao, caixa);
+
+            string erros = revista.Validar();
+
+            if (erros.Length > 0)
+            {
+                MessageBox.Show(erros);
+                return;
+            }
+
+            revista.Id = GeradorDeIds.GerarIdRevista();
+            repositorioRevista.Inserir(revista);
+            MessageBox.Show($"Revista {revista.Titulo} inserida!");
+            LimparCamposRevista();
+            AtualizarDataGridViewRevistas();
         }
 
         private void buttonSalvarEtiqueta_Click(object sender, EventArgs e)
@@ -102,6 +134,18 @@ namespace ClubeDaLeitura.WinFormsApp
             panel1.BackColor = color;
         }
 
+
+
+        private void LimparCamposRevista()
+        {
+            textBoxIdRevista.Clear();
+            textBoxTituloRevista.Clear();
+            textBoxNumeroEdicaoRevista.Clear();
+            dateTimePickerAnoPublicacaoRevista.Value = DateTime.Now;
+            textBoxStatusRevista.Clear();
+            comboBoxCaixaRevista.SelectedIndex = -1;
+        }
+
         private void buttonDeletar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdAmigo.Text))
@@ -118,6 +162,21 @@ namespace ClubeDaLeitura.WinFormsApp
             AtualizarDataGridViewAmigos();
         }
 
+        private void buttonDeletarRevista_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(textBoxIdRevista.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            else
+            {
+                repositorioRevista.Excluir(repositorioRevista.SelecionarPorId(textBoxIdRevista.Text));
+            }
+            MessageBox.Show($"Revista com o id {textBoxIdRevista.Text} foi excluída.");
+            LimparCamposRevista();
+            AtualizarDataGridViewRevistas();
+        }
         private void buttonDeletarEtiqueta_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
@@ -161,6 +220,36 @@ namespace ClubeDaLeitura.WinFormsApp
                 MessageBox.Show($"Amigo {amigo.Nome} foi atualizado.");
                 LimparCamposAmigos();
                 AtualizarDataGridViewAmigos();
+            }
+        }
+        private void buttonAtualizarRevista_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxIdRevista.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            else
+            {
+                var revista = repositorioRevista.SelecionarPorId(textBoxIdRevista.Text);
+
+                revista.Titulo = textBoxTituloRevista.Text;
+                revista.NumeroDaEdicao = Convert.ToInt32(textBoxNumeroEdicaoRevista.Text);
+                revista.AnoDePublicacao = dateTimePickerAnoPublicacaoRevista.Value;
+                int index = comboBoxCaixaRevista.SelectedIndex + 1;
+                revista.Caixa = repositorioCaixa.SelecionarPorId(index.ToString());
+
+                string erros = revista.Validar();
+
+                if (erros.Length > 0)
+                {
+                    MessageBox.Show(erros);
+                    return;
+                }
+
+                MessageBox.Show($"Revista {revista.Titulo} atualizada!");
+                LimparCamposRevista();
+                AtualizarDataGridViewRevistas();
             }
         }
         private void buttonAtualizarEtiqueta_Click(object sender, EventArgs e)
@@ -225,7 +314,7 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView3.Columns.Add("AnoPublicacao", "Ano de publicação");
             dataGridView3.Columns[3].Width = 150;
             dataGridView3.Columns.Add("Status", "Status");
-            dataGridView3.Columns.Add("Caixa", "Caixa");    
+            dataGridView3.Columns.Add("Caixa", "Caixa");
         }
         private void AtualizarDataGridViewAmigos()
         {
@@ -362,28 +451,28 @@ namespace ClubeDaLeitura.WinFormsApp
 
         private void CargaInicialRevistas()
         {
-            Revista revista1 = new Revista("Punisher", 1, DateTime.Now, "Disponível", repositorioCaixa.caixas[0]);
+            Revista revista1 = new Revista("Punisher", 1, DateTime.Now, repositorioCaixa.caixas[0]);
             revista1.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista1);
-            Revista revista2 = new Revista("Batman", 2, DateTime.Now, "Disponível", repositorioCaixa.caixas[1]);
+            Revista revista2 = new Revista("Batman", 2, DateTime.Now, repositorioCaixa.caixas[1]);
             revista2.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista2);
-            Revista revista3 = new Revista("Superman", 3, DateTime.Now, "Disponível", repositorioCaixa.caixas[2]);
+            Revista revista3 = new Revista("Superman", 3, DateTime.Now, repositorioCaixa.caixas[2]);
             revista3.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista3);
-            Revista revista4 = new Revista("Gears Of War", 4, DateTime.Now, "Disponível", repositorioCaixa.caixas[3]);
+            Revista revista4 = new Revista("Gears Of War", 4, DateTime.Now, repositorioCaixa.caixas[3]);
             revista4.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista4);
-            Revista revista5 = new Revista("Halo", 5, DateTime.Now, "Disponível", repositorioCaixa.caixas[4]);
+            Revista revista5 = new Revista("Halo", 5, DateTime.Now, repositorioCaixa.caixas[4]);
             revista5.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista5);
-            Revista revista6 = new Revista("God Of War", 6, DateTime.Now, "Disponível", repositorioCaixa.caixas[5]);
+            Revista revista6 = new Revista("God Of War", 6, DateTime.Now, repositorioCaixa.caixas[5]);
             revista6.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista6);
-            Revista revista7 = new Revista("Final Fantasy", 7, DateTime.Now, "Disponível", repositorioCaixa.caixas[6]);
+            Revista revista7 = new Revista("Final Fantasy", 7, DateTime.Now, repositorioCaixa.caixas[6]);
             revista7.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista7);
-            Revista revista8 = new Revista("Zelda", 8, DateTime.Now, "Disponível", repositorioCaixa.caixas[7]);
+            Revista revista8 = new Revista("Zelda", 8, DateTime.Now, repositorioCaixa.caixas[7]);
             revista8.Id = GeradorDeIds.GerarIdRevista();
             repositorioRevista.Inserir(revista8);
         }
@@ -398,6 +487,16 @@ namespace ClubeDaLeitura.WinFormsApp
             textBoxGreen.Text = cor[1];
             textBoxBlue.Text = cor[2];
             panel1.BackColor = Color.FromArgb(Convert.ToInt32(cor[0]), Convert.ToInt32(cor[1]), Convert.ToInt32(cor[2]));
+        }
+
+        private void PopularControlesRevista(Revista revista)
+        {
+            textBoxIdRevista.Text = revista.Id.ToString();
+            textBoxTituloRevista.Text = revista.Titulo.ToString();
+            textBoxNumeroEdicaoRevista.Text = revista.NumeroDaEdicao.ToString();
+            dateTimePickerAnoPublicacaoRevista.Value = revista.AnoDePublicacao;
+            textBoxStatusRevista.Text = revista.StatusDeEmprestimo;
+            comboBoxCaixaRevista.SelectedItem = revista.Caixa.Etiqueta;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -432,5 +531,25 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             PermitirSomenteNumeros(sender, e);
         }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PopularControlesRevista(repositorioRevista.revistas[e.RowIndex]);
+        }
+
+        private void InicializarComboBoxCaixaRevista()
+        {
+            comboBoxCaixaRevista.Items.Clear();
+            foreach (var caixa in repositorioCaixa.caixas)
+            {
+                comboBoxCaixaRevista.Items.Add(caixa.Etiqueta);
+            }
+        }
+
+        private void buttonLimparRevista_Click(object sender, EventArgs e)
+        {
+            LimparCamposRevista();
+        }
+
     }
 }

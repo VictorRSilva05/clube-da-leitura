@@ -868,6 +868,7 @@
             buttonDeletarRevista.TabIndex = 3;
             buttonDeletarRevista.Text = "Deletar";
             buttonDeletarRevista.UseVisualStyleBackColor = true;
+            buttonDeletarRevista.Click += buttonDeletarRevista_Click;
             // 
             // buttonAtualizarRevista
             // 
@@ -877,6 +878,7 @@
             buttonAtualizarRevista.TabIndex = 2;
             buttonAtualizarRevista.Text = "Atualizar";
             buttonAtualizarRevista.UseVisualStyleBackColor = true;
+            buttonAtualizarRevista.Click += buttonAtualizarRevista_Click;
             // 
             // buttonLimparRevista
             // 
@@ -886,6 +888,7 @@
             buttonLimparRevista.TabIndex = 0;
             buttonLimparRevista.Text = "Limpar";
             buttonLimparRevista.UseVisualStyleBackColor = true;
+            buttonLimparRevista.Click += buttonLimparRevista_Click;
             // 
             // buttonSalvarRevista
             // 
@@ -895,6 +898,7 @@
             buttonSalvarRevista.TabIndex = 1;
             buttonSalvarRevista.Text = "Salvar";
             buttonSalvarRevista.UseVisualStyleBackColor = true;
+            buttonSalvarRevista.Click += buttonSalvarRevista_Click;
             // 
             // dataGridView3
             // 
@@ -904,6 +908,7 @@
             dataGridView3.Name = "dataGridView3";
             dataGridView3.Size = new Size(927, 800);
             dataGridView3.TabIndex = 1;
+            dataGridView3.CellClick += dataGridView3_CellClick;
             // 
             // tabPageEmprestimos
             // 

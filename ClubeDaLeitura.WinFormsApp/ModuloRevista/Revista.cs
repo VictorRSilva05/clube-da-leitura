@@ -21,18 +21,35 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
         }
 
-        public Revista(string titulo, int numeroDaEdicao, DateTime anoDePublicacao, string statusDeEmprestimo, Caixa caixa)
+        public Revista(string titulo, int numeroDaEdicao, DateTime anoDePublicacao, Caixa caixa)
         {
             Titulo = titulo;
             NumeroDaEdicao = numeroDaEdicao;
             AnoDePublicacao = anoDePublicacao;
-            StatusDeEmprestimo = statusDeEmprestimo;
+            StatusDeEmprestimo = "Disponível";
             Caixa = caixa;
         }
 
-        public void Validar()
+        public string Validar()
         {
+            string erros = "";
 
+            if(string.IsNullOrWhiteSpace(Titulo))
+                erros += "O campo 'Título' é obrigatório\n";
+
+            if (Titulo.Length < 3)
+                erros += "O campo 'Título' deve ter pelo menos 3 caracteres\n";
+
+            if (NumeroDaEdicao <= 0)
+                erros += "O campo 'Número da Edição' deve ser maior que zero\n";
+
+            if (AnoDePublicacao == null)
+                erros += "O campo 'Ano de Publicação' é obrigatório\n";
+
+            if (Caixa == null)
+                erros += "O campo 'Caixa' é obrigatório\n";
+
+            return erros;
         }
 
         public void Emprestar()
