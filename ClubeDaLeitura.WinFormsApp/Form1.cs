@@ -1,6 +1,7 @@
 using ClubeDaLeitura.WinFormsApp.Compartilhado;
 using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
 using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
+using ClubeDaLeitura.WinFormsApp.ModuloEmprestimo;
 using ClubeDaLeitura.WinFormsApp.ModuloRevista;
 using System.Reflection;
 
@@ -11,6 +12,7 @@ namespace ClubeDaLeitura.WinFormsApp
         public RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
         public RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
         public RepositorioRevista repositorioRevista = new RepositorioRevista();
+        public RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
         public Form1()
         {
             InitializeComponent();
@@ -20,11 +22,15 @@ namespace ClubeDaLeitura.WinFormsApp
             InicializarDataGridViewAmigos();
             InicializarDataGridViewCaixas();
             InicializarDataGridViewRevistas();
+            InicializarDataGridViewEmprestimos();
             AtualizarDataGridViewAmigos();
             AtualizarDataGridViewCaixas();
             AtualizarDataGridViewRevistas();
+            AtualizarDataGridViewEmprestimos();
             InicializarComboBoxEmprestimosEtiqueta();
             InicializarComboBoxCaixaRevista();
+            InicializarComboBoxAmigosEmprestimos();
+            InicializarComboBoxRevistasEmprestimos();
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -57,6 +63,7 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Amigo {amigo.Nome} inserido!");
             LimparCamposAmigos();
             AtualizarDataGridViewAmigos();
+            InicializarComboBoxAmigosEmprestimos();
         }
 
         private void buttonSalvarRevista_Click(object sender, EventArgs e)
@@ -88,6 +95,7 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Revista {revista.Titulo} inserida!");
             LimparCamposRevista();
             AtualizarDataGridViewRevistas();
+            InicializarComboBoxRevistasEmprestimos();
         }
 
         private void buttonSalvarEtiqueta_Click(object sender, EventArgs e)
@@ -134,7 +142,15 @@ namespace ClubeDaLeitura.WinFormsApp
             panel1.BackColor = color;
         }
 
-
+        private void LimparCamposEmprestimo()
+        {
+            textBoxIdEmprestimo.Clear();
+            comboBoxAmigoEmprestimo.SelectedIndex = -1;
+            comboBoxRevistaEmprestimo.SelectedIndex = -1;
+            dateTimePickerEmprestimoEmprestimo.Value = DateTime.Now;
+            dateTimePickerDevolucaoEmprestimo.Value = DateTime.Now;
+            textBoxStatusEmprestimo.Clear();
+        }
 
         private void LimparCamposRevista()
         {
@@ -160,11 +176,12 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Amigo com o id {textBoxIdAmigo.Text} foi excluído.");
             LimparCamposAmigos();
             AtualizarDataGridViewAmigos();
+            InicializarComboBoxAmigosEmprestimos();
         }
 
         private void buttonDeletarRevista_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(textBoxIdRevista.Text))
+            if (string.IsNullOrEmpty(textBoxIdRevista.Text))
             {
                 MessageBox.Show("Por favor, insira um ID válido.");
                 return;
@@ -176,6 +193,7 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Revista com o id {textBoxIdRevista.Text} foi excluída.");
             LimparCamposRevista();
             AtualizarDataGridViewRevistas();
+            InicializarComboBoxRevistasEmprestimos();
         }
         private void buttonDeletarEtiqueta_Click(object sender, EventArgs e)
         {
@@ -250,6 +268,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 MessageBox.Show($"Revista {revista.Titulo} atualizada!");
                 LimparCamposRevista();
                 AtualizarDataGridViewRevistas();
+                InicializarComboBoxRevistasEmprestimos();
             }
         }
         private void buttonAtualizarEtiqueta_Click(object sender, EventArgs e)
@@ -316,6 +335,20 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView3.Columns.Add("Status", "Status");
             dataGridView3.Columns.Add("Caixa", "Caixa");
         }
+
+        private void InicializarDataGridViewEmprestimos()
+        {
+            dataGridView4.Columns.Add("Id", "Id");
+            dataGridView4.Columns.Add("Amigo", "Amigo");
+            dataGridView4.Columns[1].Width = 150;
+            dataGridView4.Columns.Add("Revista", "Revista");
+            dataGridView4.Columns[2].Width = 150;
+            dataGridView4.Columns.Add("DataEmprestimo", "Data de empréstimo");
+            dataGridView4.Columns[3].Width = 195;
+            dataGridView4.Columns.Add("DataDevolucao", "Data de devolução");
+            dataGridView4.Columns[4].Width = 195;
+            dataGridView4.Columns.Add("Situacao", "Situação");
+        }
         private void AtualizarDataGridViewAmigos()
         {
             dataGridView1.Rows.Clear();
@@ -343,6 +376,14 @@ namespace ClubeDaLeitura.WinFormsApp
             }
         }
 
+        private void AtualizarDataGridViewEmprestimos()
+        {
+            dataGridView4.Rows.Clear();
+            foreach(var emprestimo in repositorioEmprestimo.emprestimos)
+            {
+                dataGridView4.Rows.Add(emprestimo.Id, emprestimo.Amigo.Nome, emprestimo.Revista.Titulo, emprestimo.DataEmprestimo, emprestimo.DataDevolucao, emprestimo.Situacao);
+            }
+        }
         private void PopularControlesAmigos(Amigo amigo)
         {
             textBoxIdAmigo.Text = amigo.Id.ToString();
@@ -392,6 +433,23 @@ namespace ClubeDaLeitura.WinFormsApp
             comboBoxEmprestimoEtiqueta.SelectedIndex = -1;
         }
 
+        private void InicializarComboBoxAmigosEmprestimos()
+        {
+            comboBoxAmigoEmprestimo.Items.Clear();
+            foreach (var amigo in repositorioAmigo.amigos)
+            {
+                comboBoxAmigoEmprestimo.Items.Add(amigo.Nome);
+            }
+        }
+
+        private void InicializarComboBoxRevistasEmprestimos()
+        {
+            comboBoxRevistaEmprestimo.Items.Clear();
+            foreach (var rev in repositorioRevista.revistas)
+            {
+                comboBoxRevistaEmprestimo.Items.Add(rev.Titulo);
+            }
+        }
         private void CargaInicialAmigos()
         {
             Amigo amigo1 = new Amigo("Legolas", "Thranduil", "49 99999-9999");
@@ -551,5 +609,14 @@ namespace ClubeDaLeitura.WinFormsApp
             LimparCamposRevista();
         }
 
+        private void buttonLimparEmprestimo_Click(object sender, EventArgs e)
+        {
+            LimparCamposEmprestimo();
+        }
+
+        private void textBoxIdEmprestimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirSomenteNumeros(sender, e);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
 {
     public class RepositorioEmprestimo
     {
-        private List<Emprestimo> emprestimos = new List<Emprestimo>();
+        public List<Emprestimo> emprestimos = new List<Emprestimo>();
 
         public void Inserir()
         {
