@@ -13,6 +13,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
 
         public void Inserir(Emprestimo emprestimo)
         {
+            emprestimo.Revista.StatusDeEmprestimo = "Emprestada";
             emprestimos.Add(emprestimo);
         }
 
@@ -34,6 +35,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
 
         public void RegistrarDevolucao(Emprestimo emprestimo)
         {
+            emprestimo.Revista.StatusDeEmprestimo = "Disponível";
             emprestimo.Situacao = "Concluído";
         }
 

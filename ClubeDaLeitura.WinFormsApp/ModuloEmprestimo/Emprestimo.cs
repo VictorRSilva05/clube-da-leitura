@@ -32,6 +32,9 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
             if (Revista is null)
                 erros += "É necessário inserir uma revista.\n";
 
+            if(Revista.StatusDeEmprestimo == "Emprestada")
+                erros += "Revista já emprestada.\n";
+
             return erros;
         }
 

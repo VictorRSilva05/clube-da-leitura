@@ -136,6 +136,7 @@ namespace ClubeDaLeitura.WinFormsApp
             MessageBox.Show($"Empréstimo de {revista.Titulo} para {amigo.Nome} registrado!");
             LimparCamposEmprestimo();
             AtualizarDataGridViewEmprestimos();
+            AtualizarDataGridViewRevistas();
         }
 
         private void buttonDevolverEmprestimo_Click(object sender, EventArgs e)
@@ -150,6 +151,7 @@ namespace ClubeDaLeitura.WinFormsApp
             repositorioEmprestimo.RegistrarDevolucao(emprestimo);
             MessageBox.Show($"Emprestimo de {emprestimo.Revista.Titulo} de {emprestimo.Amigo.Nome} foi devoluído!");
             AtualizarDataGridViewEmprestimos();
+            AtualizarDataGridViewRevistas();
             LimparCamposEmprestimo();
         }
 
