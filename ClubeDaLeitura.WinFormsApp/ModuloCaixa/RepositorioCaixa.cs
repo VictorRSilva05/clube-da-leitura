@@ -12,9 +12,18 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloCaixa
     {
         public List<Caixa> caixas = new List<Caixa>();
 
-        public void Inserir(Caixa caixa)
+        public bool Inserir(Caixa caixa)
         {
+            foreach (var ca in caixas)
+            {
+                if (ca.Etiqueta == caixa.Etiqueta)
+                {
+                    MessageBox.Show("Etiqueta já cadastrada");
+                    return false;
+                }
+            }
             caixas.Add(caixa);
+            return true;
         }
 
         public void Editar()

@@ -163,11 +163,12 @@ namespace ClubeDaLeitura.WinFormsApp
             }
 
             caixa.Id = GeradorDeIds.GerarIdCaixa();
-            repositorioCaixa.Inserir(caixa);
-            MessageBox.Show($"Caixa {caixa.Etiqueta} inserida!");
-            LimparCamposCaixa();
-            AtualizarDataGridViewCaixas();
-
+            if (repositorioCaixa.Inserir(caixa))
+            {
+                MessageBox.Show($"Caixa {caixa.Etiqueta} inserida!");
+                LimparCamposCaixa();
+                AtualizarDataGridViewCaixas();
+            }
         }
 
 
