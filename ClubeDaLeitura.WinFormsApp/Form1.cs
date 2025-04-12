@@ -93,11 +93,13 @@ namespace ClubeDaLeitura.WinFormsApp
             }
 
             revista.Id = GeradorDeIds.GerarIdRevista();
-            repositorioRevista.Inserir(revista);
-            MessageBox.Show($"Revista {revista.Titulo} inserida!");
-            LimparCamposRevista();
-            AtualizarDataGridViewRevistas();
-            InicializarComboBoxRevistasEmprestimos();
+            if(repositorioRevista.Inserir(revista))
+            {
+                MessageBox.Show($"Revista {revista.Titulo} inserida!");
+                LimparCamposRevista();
+                AtualizarDataGridViewRevistas();
+                InicializarComboBoxRevistasEmprestimos();
+            }
         }
 
         private void buttonEmprestarEmprestimo_Click(object sender, EventArgs e)

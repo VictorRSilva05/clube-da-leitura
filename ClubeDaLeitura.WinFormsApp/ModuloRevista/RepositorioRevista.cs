@@ -11,9 +11,18 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
     {
         public List<Revista> revistas = new List<Revista>();
 
-        public void Inserir(Revista revista)
+        public bool Inserir(Revista revista)
         {
+            foreach (var rev in revistas)
+            {
+                if (rev.Titulo == revista.Titulo && rev.NumeroDaEdicao == revista.NumeroDaEdicao)
+                {
+                    MessageBox.Show("Revista já cadastrada");
+                    return false;
+                }
+            }
             revistas.Add(revista);
+            return true;
         }
 
         public void Editar()
