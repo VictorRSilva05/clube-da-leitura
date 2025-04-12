@@ -127,6 +127,11 @@ namespace ClubeDaLeitura.WinFormsApp
             }
 
             emprestimo.Id = GeradorDeIds.GerarIdEmprestimo();
+            if (VerificarEmprestimoAtivo(amigo))
+            {
+                MessageBox.Show("Amigo já possui um empréstimo ativo.");
+                return;
+            }
             repositorioEmprestimo.Inserir(emprestimo);
             MessageBox.Show($"Empréstimo de {revista.Titulo} para {amigo.Nome} registrado!");
             LimparCamposEmprestimo();
