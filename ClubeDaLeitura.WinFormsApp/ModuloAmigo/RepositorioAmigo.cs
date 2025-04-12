@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿using ClubeDaLeitura.WinFormsApp.ModuloEmprestimo;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloAmigo
     {
         public List<Amigo> amigos = new List<Amigo>();
 
+        RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
         public RepositorioAmigo()
         {
 
@@ -18,14 +20,14 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloAmigo
 
         public bool Inserir(Amigo amigo)
         {
-            
+
             foreach (var item in amigos)
             {
                 if (item.Nome == amigo.Nome)
                 {
                     MessageBox.Show("Nome já cadastrado");
                     return false;
-                }    
+                }
             }
 
             foreach (var item in amigos)

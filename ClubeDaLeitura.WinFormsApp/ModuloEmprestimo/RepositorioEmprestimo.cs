@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
         {
 
         }
+
 
         public void RegistrarDevolucao(Emprestimo emprestimo)
         {

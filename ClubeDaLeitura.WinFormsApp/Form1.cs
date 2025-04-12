@@ -42,6 +42,7 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             LimparCamposCaixa();
         }
+
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             string nome = textBoxNomeAmigo.Text;
@@ -173,7 +174,6 @@ namespace ClubeDaLeitura.WinFormsApp
             }
         }
 
-
         private void LimparCamposAmigos()
         {
             textBoxIdAmigo.Clear();
@@ -224,12 +224,29 @@ namespace ClubeDaLeitura.WinFormsApp
             }
             else
             {
+                if (VerificarEmprestimoAtivo(repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text)))
+                {
+                    MessageBox.Show("Não é possível excluir um amigo com empréstimos ativos.");
+                    return;
+                }
                 repositorioAmigo.Excluir(repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text));
             }
             MessageBox.Show($"Amigo com o id {textBoxIdAmigo.Text} foi excluído.");
             LimparCamposAmigos();
             AtualizarDataGridViewAmigos();
             InicializarComboBoxAmigosEmprestimos();
+        }
+
+        public bool VerificarEmprestimoAtivo(Amigo amigo)
+        {
+            foreach (var item in repositorioEmprestimo.emprestimos)
+            {
+                if (item.Amigo == amigo && item.Situacao == "Aberto" || item.Situacao == "Atrasado")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void buttonDeletarRevista_Click(object sender, EventArgs e)
@@ -248,6 +265,7 @@ namespace ClubeDaLeitura.WinFormsApp
             AtualizarDataGridViewRevistas();
             InicializarComboBoxRevistasEmprestimos();
         }
+
         private void buttonDeletarEtiqueta_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
@@ -293,6 +311,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 AtualizarDataGridViewAmigos();
             }
         }
+
         private void buttonAtualizarRevista_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdRevista.Text))
@@ -324,6 +343,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 InicializarComboBoxRevistasEmprestimos();
             }
         }
+
         private void buttonAtualizarEtiqueta_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
@@ -352,6 +372,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 AtualizarDataGridViewCaixas();
             }
         }
+
         private void InicializarDataGridViewAmigos()
         {
             dataGridView1.Columns.Add("Id", "Id");
@@ -402,6 +423,7 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView4.Columns[4].Width = 195;
             dataGridView4.Columns.Add("Situacao", "Situação");
         }
+
         private void AtualizarDataGridViewAmigos()
         {
             dataGridView1.Rows.Clear();
@@ -437,6 +459,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 dataGridView4.Rows.Add(emprestimo.Id, emprestimo.Amigo.Nome, emprestimo.Revista.Titulo, emprestimo.DataEmprestimo, emprestimo.DataDevolucao, emprestimo.Situacao);
             }
         }
+
         private void PopularControlesAmigos(Amigo amigo)
         {
             textBoxIdAmigo.Text = amigo.Id.ToString();
@@ -513,6 +536,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 comboBoxRevistaEmprestimo.Items.Add(rev.Titulo);
             }
         }
+
         private void CargaInicialAmigos()
         {
             Amigo amigo1 = new Amigo("Legolas", "Thranduil", "(49) 99999-9999");
