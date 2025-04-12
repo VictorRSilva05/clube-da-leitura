@@ -441,7 +441,7 @@
             buttonDeletarEtiqueta.TabIndex = 3;
             buttonDeletarEtiqueta.Text = "Deletar";
             buttonDeletarEtiqueta.UseVisualStyleBackColor = true;
-            buttonDeletarEtiqueta.Click += buttonDeletarEtiqueta_Click;
+            buttonDeletarEtiqueta.Click += buttonDeletarCaixa_Click;
             // 
             // buttonAtualizarEtiqueta
             // 
@@ -461,7 +461,7 @@
             buttonSalvarEtiqueta.TabIndex = 1;
             buttonSalvarEtiqueta.Text = "Salvar";
             buttonSalvarEtiqueta.UseVisualStyleBackColor = true;
-            buttonSalvarEtiqueta.Click += buttonSalvarEtiqueta_Click;
+            buttonSalvarEtiqueta.Click += buttonSalvarCaixa_Click;
             // 
             // buttonLimparEtiqueta
             // 
@@ -471,7 +471,7 @@
             buttonLimparEtiqueta.TabIndex = 0;
             buttonLimparEtiqueta.Text = "Limpar";
             buttonLimparEtiqueta.UseVisualStyleBackColor = true;
-            buttonLimparEtiqueta.Click += buttonLimparEtiqueta_Click;
+            buttonLimparEtiqueta.Click += buttonLimparCaixa_Click;
             // 
             // tableLayoutPanel7
             // 

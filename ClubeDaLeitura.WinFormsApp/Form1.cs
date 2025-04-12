@@ -3,7 +3,6 @@ using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
 using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
 using ClubeDaLeitura.WinFormsApp.ModuloEmprestimo;
 using ClubeDaLeitura.WinFormsApp.ModuloRevista;
-using System.Reflection;
 
 namespace ClubeDaLeitura.WinFormsApp
 {
@@ -38,7 +37,7 @@ namespace ClubeDaLeitura.WinFormsApp
             LimparCamposAmigos();
         }
 
-        private void buttonLimparEtiqueta_Click(object sender, EventArgs e)
+        private void buttonLimparCaixa_Click(object sender, EventArgs e)
         {
             LimparCamposCaixa();
         }
@@ -149,7 +148,7 @@ namespace ClubeDaLeitura.WinFormsApp
             LimparCamposEmprestimo();
         }
 
-        private void buttonSalvarEtiqueta_Click(object sender, EventArgs e)
+        private void buttonSalvarCaixa_Click(object sender, EventArgs e)
         {
             string etiqueta = textBoxEtiqueta.Text;
             int diasDeEmprestimo = Convert.ToInt32(comboBoxEmprestimoEtiqueta.SelectedItem);
@@ -266,7 +265,7 @@ namespace ClubeDaLeitura.WinFormsApp
             InicializarComboBoxRevistasEmprestimos();
         }
 
-        private void buttonDeletarEtiqueta_Click(object sender, EventArgs e)
+        private void buttonDeletarCaixa_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxIdEtiqueta.Text))
             {
@@ -275,12 +274,28 @@ namespace ClubeDaLeitura.WinFormsApp
             }
             else
             {
+                if (VerificarCaixaEmUso(repositorioCaixa.SelecionarPorId(textBoxIdEtiqueta.Text)))
+                {
+                    MessageBox.Show("Não é possível excluir uma caixa com revistas associadas.");
+                    return;
+                }
                 repositorioCaixa.Excluir(repositorioCaixa.SelecionarPorId(textBoxIdEtiqueta.Text));
+                MessageBox.Show($"Caixa com o id {textBoxIdEtiqueta.Text} foi excluído.");
+                LimparCamposCaixa();
+                AtualizarDataGridViewCaixas();
             }
-            MessageBox.Show($"Caixa com o id {textBoxIdEtiqueta.Text} foi excluído.");
-            LimparCamposCaixa();
-            AtualizarDataGridViewCaixas();
+        }
 
+        private bool VerificarCaixaEmUso(Caixa caixa)
+        {
+            foreach (var item in repositorioRevista.revistas)
+            {
+                if (item.Caixa == caixa)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void buttonAtualizar_Click(object sender, EventArgs e)

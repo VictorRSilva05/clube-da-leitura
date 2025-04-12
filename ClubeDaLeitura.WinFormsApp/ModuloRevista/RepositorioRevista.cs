@@ -48,5 +48,6 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
             return revista;
         }
+
     }
 }
