@@ -93,7 +93,7 @@ namespace ClubeDaLeitura.WinFormsApp
             }
 
             revista.Id = GeradorDeIds.GerarIdRevista();
-            if(repositorioRevista.Inserir(revista))
+            if (repositorioRevista.Inserir(revista))
             {
                 MessageBox.Show($"Revista {revista.Titulo} inserida!");
                 LimparCamposRevista();
@@ -733,5 +733,19 @@ namespace ClubeDaLeitura.WinFormsApp
             PermitirSomenteNumeros(sender, e);
         }
 
+        private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5 && e.Value != null)
+            {
+                if (e.Value.ToString() == "Atrasado")
+                {
+                    e.CellStyle.BackColor = Color.Red;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.White;
+                }
+            }
+        }
     }
 }

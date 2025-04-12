@@ -42,15 +42,5 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloCaixa
 
             return erros;
         }
-
-        public void AdicionarRevista()
-        {
-
-        }
-
-        public void RemoverRevista()
-        {
-
-        }
     }
 }

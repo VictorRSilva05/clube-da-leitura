@@ -1180,6 +1180,7 @@
             dataGridView4.Size = new Size(927, 800);
             dataGridView4.TabIndex = 1;
             dataGridView4.CellClick += dataGridView4_CellClick;
+            dataGridView4.CellFormatting += dataGridView4_CellFormatting;
             // 
             // label23
             // 
