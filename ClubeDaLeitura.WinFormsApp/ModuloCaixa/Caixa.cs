@@ -42,5 +42,15 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloCaixa
 
             return erros;
         }
+
+        public Color ExtrairCor()
+        {
+            byte r, g, b = default;
+            string[] cores = Cor.Split(' ');
+            r = Convert.ToByte(cores[0]);
+            g = Convert.ToByte(cores[1]);
+            b = Convert.ToByte(cores[2]);
+            return Color.FromArgb(r, g, b);
+        }
     }
 }

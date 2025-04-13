@@ -123,6 +123,7 @@
             dataGridView4 = new DataGridView();
             label23 = new Label();
             label24 = new Label();
+            buttonVisualizarEmprestimos = new Button();
             tabControl1.SuspendLayout();
             tabPageAmigos.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -317,11 +318,13 @@
             tableLayoutPanel4.Controls.Add(buttonAtualizarAmigo, 2, 0);
             tableLayoutPanel4.Controls.Add(buttonSalvarAmigo, 1, 0);
             tableLayoutPanel4.Controls.Add(buttonLimparAmigo, 0, 0);
+            tableLayoutPanel4.Controls.Add(buttonVisualizarEmprestimos, 0, 1);
             tableLayoutPanel4.Location = new Point(3, 403);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(921, 100);
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(921, 200);
             tableLayoutPanel4.TabIndex = 1;
             // 
             // buttonDeletarAmigo
@@ -688,6 +691,7 @@
             dataGridView2.Size = new Size(927, 800);
             dataGridView2.TabIndex = 1;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            dataGridView2.RowPrePaint += dataGridView2_RowPrePaint;
             // 
             // tabPageRevistas
             // 
@@ -1204,6 +1208,17 @@
             label24.TabIndex = 2;
             label24.Text = "Victor R. Silva. Academia do programador 2025";
             // 
+            // buttonVisualizarEmprestimos
+            // 
+            buttonVisualizarEmprestimos.Dock = DockStyle.Fill;
+            buttonVisualizarEmprestimos.Location = new Point(3, 103);
+            buttonVisualizarEmprestimos.Name = "buttonVisualizarEmprestimos";
+            buttonVisualizarEmprestimos.Size = new Size(224, 94);
+            buttonVisualizarEmprestimos.TabIndex = 4;
+            buttonVisualizarEmprestimos.Text = "Visualizar empréstimos";
+            buttonVisualizarEmprestimos.UseVisualStyleBackColor = true;
+            buttonVisualizarEmprestimos.Click += buttonVisualizarEmprestimos_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1350,5 +1365,6 @@
         private Button buttonEmprestarEmprestimo;
         private Label label23;
         private Label label24;
+        private Button buttonVisualizarEmprestimos;
     }
 }

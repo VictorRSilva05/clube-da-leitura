@@ -747,5 +747,45 @@ namespace ClubeDaLeitura.WinFormsApp
                 }
             }
         }
+
+        private void dataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var row = dataGridView2.Rows[e.RowIndex];
+            if (row.DataBoundItem is Caixa caixa && row.Cells["Cor"].Value != null)
+            {
+                row.DefaultCellStyle.BackColor = caixa.ExtrairCor();
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = Color.White;
+            }
+        }
+        private void DataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+
+        }
+
+        private void buttonVisualizarEmprestimos_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxIdAmigo.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            else
+            {
+                var amigo = repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text);
+                var emprestimosAtivos = repositorioEmprestimo.emprestimos.Where(e => e.Amigo == amigo).ToList();
+                if (emprestimosAtivos.Count > 0)
+                {
+                    string emprestimos = string.Join(Environment.NewLine, emprestimosAtivos.Select(e => $"ID: {e.Id}, Revista: {e.Revista.Titulo}, Situação: {e.Situacao}"));
+                    MessageBox.Show($"Empréstimos ativos para {amigo.Nome}:{Environment.NewLine}{emprestimos}");
+                }
+                else
+                {
+                    MessageBox.Show($"Nenhum empréstimo ativo encontrado para {amigo.Nome}.");
+                }
+            }
+        }
     }
 }
