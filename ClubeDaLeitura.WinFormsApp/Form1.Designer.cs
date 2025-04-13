@@ -691,7 +691,6 @@
             dataGridView2.Size = new Size(927, 800);
             dataGridView2.TabIndex = 1;
             dataGridView2.CellClick += dataGridView2_CellClick;
-            dataGridView2.RowPrePaint += dataGridView2_RowPrePaint;
             // 
             // tabPageRevistas
             // 

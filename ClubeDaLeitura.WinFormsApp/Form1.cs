@@ -177,6 +177,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 MessageBox.Show($"Caixa {caixa.Etiqueta} inserida!");
                 LimparCamposCaixa();
                 AtualizarDataGridViewCaixas();
+                InicializarComboBoxCaixaRevista();
             }
         }
 
@@ -747,24 +748,6 @@ namespace ClubeDaLeitura.WinFormsApp
                 }
             }
         }
-
-        private void dataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            var row = dataGridView2.Rows[e.RowIndex];
-            if (row.DataBoundItem is Caixa caixa && row.Cells["Cor"].Value != null)
-            {
-                row.DefaultCellStyle.BackColor = caixa.ExtrairCor();
-            }
-            else
-            {
-                row.DefaultCellStyle.BackColor = Color.White;
-            }
-        }
-        private void DataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-
-        }
-
         private void buttonVisualizarEmprestimos_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxIdAmigo.Text))
