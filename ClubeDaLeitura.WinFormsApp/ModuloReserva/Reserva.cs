@@ -23,7 +23,6 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloReserva
             Revista = revista;
             DataRetirada = dataRetirada;
             DataDevolucao = ObterDataDevolucao();
-            revista.Reservar();
         }
 
         public string Validar()

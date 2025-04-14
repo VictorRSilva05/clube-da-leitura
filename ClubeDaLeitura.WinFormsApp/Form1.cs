@@ -169,6 +169,7 @@ namespace ClubeDaLeitura.WinFormsApp
                 return;
             }
 
+            reserva.Revista.Reservar();
             reserva.Id = GeradorDeIds.GerarIdReserva();
             
             repositorioReserva.Inserir(reserva);
