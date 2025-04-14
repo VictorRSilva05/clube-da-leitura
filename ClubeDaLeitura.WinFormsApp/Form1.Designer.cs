@@ -48,6 +48,7 @@
             buttonAtualizarAmigo = new Button();
             buttonSalvarAmigo = new Button();
             buttonLimparAmigo = new Button();
+            buttonVisualizarEmprestimos = new Button();
             dataGridView1 = new DataGridView();
             tabPageCaixas = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
@@ -104,6 +105,7 @@
             tableLayoutPanel14 = new TableLayoutPanel();
             tableLayoutPanel15 = new TableLayoutPanel();
             tableLayoutPanel17 = new TableLayoutPanel();
+            buttonReservar = new Button();
             buttonDevolverEmprestimo = new Button();
             buttonLimparEmprestimo = new Button();
             buttonEmprestarEmprestimo = new Button();
@@ -123,7 +125,7 @@
             dataGridView4 = new DataGridView();
             label23 = new Label();
             label24 = new Label();
-            buttonVisualizarEmprestimos = new Button();
+            dataGridView5 = new DataGridView();
             tabControl1.SuspendLayout();
             tabPageAmigos.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -153,6 +155,7 @@
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -366,6 +369,17 @@
             buttonLimparAmigo.Text = "Limpar";
             buttonLimparAmigo.UseVisualStyleBackColor = true;
             buttonLimparAmigo.Click += buttonLimpar_Click;
+            // 
+            // buttonVisualizarEmprestimos
+            // 
+            buttonVisualizarEmprestimos.Dock = DockStyle.Fill;
+            buttonVisualizarEmprestimos.Location = new Point(3, 103);
+            buttonVisualizarEmprestimos.Name = "buttonVisualizarEmprestimos";
+            buttonVisualizarEmprestimos.Size = new Size(224, 94);
+            buttonVisualizarEmprestimos.TabIndex = 4;
+            buttonVisualizarEmprestimos.Text = "Visualizar empréstimos";
+            buttonVisualizarEmprestimos.UseVisualStyleBackColor = true;
+            buttonVisualizarEmprestimos.Click += buttonVisualizarEmprestimos_Click;
             // 
             // dataGridView1
             // 
@@ -962,10 +976,12 @@
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel14.Controls.Add(tableLayoutPanel15, 0, 0);
             tableLayoutPanel14.Controls.Add(dataGridView4, 1, 0);
+            tableLayoutPanel14.Controls.Add(dataGridView5, 1, 1);
             tableLayoutPanel14.Dock = DockStyle.Fill;
             tableLayoutPanel14.Location = new Point(3, 3);
             tableLayoutPanel14.Name = "tableLayoutPanel14";
-            tableLayoutPanel14.RowCount = 1;
+            tableLayoutPanel14.RowCount = 2;
+            tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel14.Size = new Size(1866, 806);
             tableLayoutPanel14.TabIndex = 0;
@@ -982,28 +998,40 @@
             tableLayoutPanel15.RowCount = 2;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel15.Size = new Size(927, 800);
+            tableLayoutPanel15.Size = new Size(927, 397);
             tableLayoutPanel15.TabIndex = 0;
             // 
             // tableLayoutPanel17
             // 
-            tableLayoutPanel17.ColumnCount = 3;
+            tableLayoutPanel17.ColumnCount = 4;
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel17.Controls.Add(buttonReservar, 3, 0);
             tableLayoutPanel17.Controls.Add(buttonDevolverEmprestimo, 2, 0);
             tableLayoutPanel17.Controls.Add(buttonLimparEmprestimo, 0, 0);
             tableLayoutPanel17.Controls.Add(buttonEmprestarEmprestimo, 1, 0);
-            tableLayoutPanel17.Location = new Point(3, 403);
+            tableLayoutPanel17.Location = new Point(3, 201);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 1;
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel17.Size = new Size(921, 100);
             tableLayoutPanel17.TabIndex = 6;
             // 
+            // buttonReservar
+            // 
+            buttonReservar.Location = new Point(693, 3);
+            buttonReservar.Name = "buttonReservar";
+            buttonReservar.Size = new Size(224, 94);
+            buttonReservar.TabIndex = 3;
+            buttonReservar.Text = "Reservar";
+            buttonReservar.UseVisualStyleBackColor = true;
+            buttonReservar.Click += buttonReservar_Click;
+            // 
             // buttonDevolverEmprestimo
             // 
-            buttonDevolverEmprestimo.Location = new Point(617, 3);
+            buttonDevolverEmprestimo.Location = new Point(463, 3);
             buttonDevolverEmprestimo.Name = "buttonDevolverEmprestimo";
             buttonDevolverEmprestimo.Size = new Size(224, 94);
             buttonDevolverEmprestimo.TabIndex = 2;
@@ -1023,7 +1051,7 @@
             // 
             // buttonEmprestarEmprestimo
             // 
-            buttonEmprestarEmprestimo.Location = new Point(310, 3);
+            buttonEmprestarEmprestimo.Location = new Point(233, 3);
             buttonEmprestarEmprestimo.Name = "buttonEmprestarEmprestimo";
             buttonEmprestarEmprestimo.Size = new Size(224, 94);
             buttonEmprestarEmprestimo.TabIndex = 1;
@@ -1057,14 +1085,14 @@
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel16.Size = new Size(921, 259);
+            tableLayoutPanel16.Size = new Size(921, 192);
             tableLayoutPanel16.TabIndex = 5;
             // 
             // comboBoxRevistaEmprestimo
             // 
             comboBoxRevistaEmprestimo.Font = new Font("Segoe UI", 16F);
             comboBoxRevistaEmprestimo.FormattingEnabled = true;
-            comboBoxRevistaEmprestimo.Location = new Point(235, 89);
+            comboBoxRevistaEmprestimo.Location = new Point(235, 67);
             comboBoxRevistaEmprestimo.Name = "comboBoxRevistaEmprestimo";
             comboBoxRevistaEmprestimo.Size = new Size(367, 38);
             comboBoxRevistaEmprestimo.TabIndex = 16;
@@ -1073,7 +1101,7 @@
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label22.Location = new Point(3, 86);
+            label22.Location = new Point(3, 64);
             label22.Name = "label22";
             label22.Size = new Size(83, 30);
             label22.TabIndex = 15;
@@ -1083,7 +1111,7 @@
             // 
             comboBoxAmigoEmprestimo.Font = new Font("Segoe UI", 16F);
             comboBoxAmigoEmprestimo.FormattingEnabled = true;
-            comboBoxAmigoEmprestimo.Location = new Point(235, 46);
+            comboBoxAmigoEmprestimo.Location = new Point(235, 35);
             comboBoxAmigoEmprestimo.Name = "comboBoxAmigoEmprestimo";
             comboBoxAmigoEmprestimo.Size = new Size(367, 38);
             comboBoxAmigoEmprestimo.TabIndex = 13;
@@ -1101,7 +1129,7 @@
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label20.Location = new Point(3, 43);
+            label20.Location = new Point(3, 32);
             label20.Name = "label20";
             label20.Size = new Size(74, 30);
             label20.TabIndex = 0;
@@ -1121,7 +1149,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.Location = new Point(3, 215);
+            label17.Location = new Point(3, 160);
             label17.Name = "label17";
             label17.Size = new Size(74, 30);
             label17.TabIndex = 8;
@@ -1130,7 +1158,7 @@
             // textBoxStatusEmprestimo
             // 
             textBoxStatusEmprestimo.Font = new Font("Segoe UI", 16F);
-            textBoxStatusEmprestimo.Location = new Point(235, 218);
+            textBoxStatusEmprestimo.Location = new Point(235, 163);
             textBoxStatusEmprestimo.Name = "textBoxStatusEmprestimo";
             textBoxStatusEmprestimo.ReadOnly = true;
             textBoxStatusEmprestimo.Size = new Size(367, 36);
@@ -1140,7 +1168,7 @@
             // 
             dateTimePickerDevolucaoEmprestimo.CustomFormat = "";
             dateTimePickerDevolucaoEmprestimo.Font = new Font("Segoe UI", 16F);
-            dateTimePickerDevolucaoEmprestimo.Location = new Point(235, 175);
+            dateTimePickerDevolucaoEmprestimo.Location = new Point(235, 131);
             dateTimePickerDevolucaoEmprestimo.Name = "dateTimePickerDevolucaoEmprestimo";
             dateTimePickerDevolucaoEmprestimo.Size = new Size(367, 36);
             dateTimePickerDevolucaoEmprestimo.TabIndex = 10;
@@ -1149,7 +1177,7 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.Location = new Point(3, 172);
+            label18.Location = new Point(3, 128);
             label18.Name = "label18";
             label18.Size = new Size(192, 30);
             label18.TabIndex = 2;
@@ -1159,7 +1187,7 @@
             // 
             dateTimePickerEmprestimoEmprestimo.CustomFormat = "";
             dateTimePickerEmprestimoEmprestimo.Font = new Font("Segoe UI", 16F);
-            dateTimePickerEmprestimoEmprestimo.Location = new Point(235, 132);
+            dateTimePickerEmprestimoEmprestimo.Location = new Point(235, 99);
             dateTimePickerEmprestimoEmprestimo.Name = "dateTimePickerEmprestimoEmprestimo";
             dateTimePickerEmprestimoEmprestimo.Size = new Size(367, 36);
             dateTimePickerEmprestimoEmprestimo.TabIndex = 14;
@@ -1168,7 +1196,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label19.Location = new Point(3, 129);
+            label19.Location = new Point(3, 96);
             label19.Name = "label19";
             label19.Size = new Size(208, 30);
             label19.TabIndex = 1;
@@ -1180,7 +1208,7 @@
             dataGridView4.Dock = DockStyle.Fill;
             dataGridView4.Location = new Point(936, 3);
             dataGridView4.Name = "dataGridView4";
-            dataGridView4.Size = new Size(927, 800);
+            dataGridView4.Size = new Size(927, 397);
             dataGridView4.TabIndex = 1;
             dataGridView4.CellClick += dataGridView4_CellClick;
             dataGridView4.CellFormatting += dataGridView4_CellFormatting;
@@ -1207,16 +1235,14 @@
             label24.TabIndex = 2;
             label24.Text = "Victor R. Silva. Academia do programador 2025";
             // 
-            // buttonVisualizarEmprestimos
+            // dataGridView5
             // 
-            buttonVisualizarEmprestimos.Dock = DockStyle.Fill;
-            buttonVisualizarEmprestimos.Location = new Point(3, 103);
-            buttonVisualizarEmprestimos.Name = "buttonVisualizarEmprestimos";
-            buttonVisualizarEmprestimos.Size = new Size(224, 94);
-            buttonVisualizarEmprestimos.TabIndex = 4;
-            buttonVisualizarEmprestimos.Text = "Visualizar empréstimos";
-            buttonVisualizarEmprestimos.UseVisualStyleBackColor = true;
-            buttonVisualizarEmprestimos.Click += buttonVisualizarEmprestimos_Click;
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView5.Dock = DockStyle.Fill;
+            dataGridView5.Location = new Point(936, 406);
+            dataGridView5.Name = "dataGridView5";
+            dataGridView5.Size = new Size(927, 397);
+            dataGridView5.TabIndex = 2;
             // 
             // Form1
             // 
@@ -1265,6 +1291,7 @@
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1365,5 +1392,7 @@
         private Label label23;
         private Label label24;
         private Button buttonVisualizarEmprestimos;
+        private Button buttonReservar;
+        private DataGridView dataGridView5;
     }
 }

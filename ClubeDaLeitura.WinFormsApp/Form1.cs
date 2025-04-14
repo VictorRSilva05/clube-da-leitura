@@ -2,6 +2,7 @@ using ClubeDaLeitura.WinFormsApp.Compartilhado;
 using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
 using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
 using ClubeDaLeitura.WinFormsApp.ModuloEmprestimo;
+using ClubeDaLeitura.WinFormsApp.ModuloReserva;
 using ClubeDaLeitura.WinFormsApp.ModuloRevista;
 
 namespace ClubeDaLeitura.WinFormsApp
@@ -769,6 +770,11 @@ namespace ClubeDaLeitura.WinFormsApp
                     MessageBox.Show($"Nenhum empréstimo ativo encontrado para {amigo.Nome}.");
                 }
             }
+        }
+
+        private void buttonReservar_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

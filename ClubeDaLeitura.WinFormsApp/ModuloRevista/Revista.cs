@@ -64,7 +64,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloRevista
 
         public void Reservar()
         {
-
+            StatusDeEmprestimo = "Reservado";
         }
     }
 }
