@@ -159,26 +159,44 @@ namespace ClubeDaLeitura.WinFormsApp
             Amigo amigo = repositorioAmigo.SelecionarPorId(indexAmigo.ToString());
             Revista revista = repositorioRevista.SelecionarPorId(indexRevista.ToString());
 
-            Reserva reserva  = new Reserva(amigo, revista, dataRetirada);
+            Reserva reserva = new Reserva(amigo, revista, dataRetirada);
 
             string erros = reserva.Validar();
 
-            if(erros.Length > 0)
+            if (erros.Length > 0)
             {
                 MessageBox.Show(erros);
                 return;
             }
 
+            if (VerificarReservaAtiva(amigo))
+            {
+                MessageBox.Show("Amigo já possui uma reserva ativa.");
+                return;
+            }
+
             reserva.Revista.Reservar();
             reserva.Id = GeradorDeIds.GerarIdReserva();
-            
+
             repositorioReserva.Inserir(reserva);
             MessageBox.Show($"Reserva de {revista.Titulo} para {amigo.Nome} registrada!");
             LimparCamposEmprestimo();
             AtualizarDataGridViewReservas();
             AtualizarDataGridViewRevistas();
         }
-       
+
+        private bool VerificarReservaAtiva(Amigo amigo)
+        {
+            foreach (var item in repositorioReserva.reservas)
+            {
+                if (item.Amigo == amigo && item.Situacao == "Ativo")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void buttonDevolverEmprestimo_Click(object sender, EventArgs e)
         {
             string index = textBoxIdEmprestimo.Text;
@@ -190,6 +208,27 @@ namespace ClubeDaLeitura.WinFormsApp
             var emprestimo = repositorioEmprestimo.SelecionarPorId(index);
             repositorioEmprestimo.RegistrarDevolucao(emprestimo);
             MessageBox.Show($"Emprestimo de {emprestimo.Revista.Titulo} de {emprestimo.Amigo.Nome} foi devoluído!");
+            AtualizarDataGridViewEmprestimos();
+            AtualizarDataGridViewRevistas();
+            LimparCamposEmprestimo();
+        }
+
+        private void buttonConcluirReserva_Click(object sender, EventArgs e)
+        {
+            string index = textBoxIdEmprestimo.Text;
+            if (string.IsNullOrEmpty(index))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            var reserva = repositorioReserva.SelecionarPorId(index);
+            repositorioReserva.RegistrarDevolucao(reserva);
+
+            Emprestimo emprestimo = new Emprestimo(reserva);
+            repositorioEmprestimo.Inserir(emprestimo);
+
+            MessageBox.Show($"Reserva de {reserva.Revista.Titulo} de {reserva.Amigo.Nome} foi concluída!");
+            AtualizarDataGridViewReservas();
             AtualizarDataGridViewEmprestimos();
             AtualizarDataGridViewRevistas();
             LimparCamposEmprestimo();
@@ -540,9 +579,9 @@ namespace ClubeDaLeitura.WinFormsApp
         private void AtualizarDataGridViewReservas()
         {
             dataGridView5.Rows.Clear();
-            foreach(var reserva in repositorioReserva.reservas)
+            foreach (var reserva in repositorioReserva.reservas)
             {
-                dataGridView5.Rows.Add(reserva.Id, reserva.Amigo.Nome, reserva.Revista.Titulo, reserva.DataRetirada,  reserva.DataDevolucao, reserva.Situacao);
+                dataGridView5.Rows.Add(reserva.Id, reserva.Amigo.Nome, reserva.Revista.Titulo, reserva.DataRetirada, reserva.DataDevolucao, reserva.Situacao);
             }
         }
 
@@ -562,6 +601,16 @@ namespace ClubeDaLeitura.WinFormsApp
             dateTimePickerEmprestimoEmprestimo.Value = emprestimo.DataEmprestimo;
             dateTimePickerDevolucaoEmprestimo.Value = emprestimo.DataDevolucao;
             textBoxStatusEmprestimo.Text = emprestimo.Situacao;
+        }
+
+        private void PopularControlesReserva(Reserva reserva)
+        {
+            textBoxIdEmprestimo.Text = reserva.Id.ToString();
+            comboBoxAmigoEmprestimo.SelectedItem = reserva.Amigo.Nome;
+            comboBoxRevistaEmprestimo.SelectedItem = reserva.Revista.Titulo;
+            dateTimePickerEmprestimoEmprestimo.Value = reserva.DataRetirada;
+            dateTimePickerDevolucaoEmprestimo.Value = reserva.DataDevolucao;
+            textBoxStatusEmprestimo.Text = reserva.Situacao;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -833,6 +882,12 @@ namespace ClubeDaLeitura.WinFormsApp
                 }
             }
         }
+
+        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PopularControlesReserva(repositorioReserva.reservas[e.RowIndex]);
+        }
+
 
     }
 }

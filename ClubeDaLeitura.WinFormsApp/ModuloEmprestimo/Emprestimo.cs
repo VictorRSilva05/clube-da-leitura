@@ -1,5 +1,8 @@
-﻿using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
+﻿using ClubeDaLeitura.WinFormsApp.Compartilhado;
+using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
+using ClubeDaLeitura.WinFormsApp.ModuloReserva;
 using ClubeDaLeitura.WinFormsApp.ModuloRevista;
+using System.Security.Cryptography.X509Certificates;
 namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
 {
     public class Emprestimo
@@ -20,6 +23,16 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
             DataEmprestimo = DateTime.Now;
             DataDevolucao = ObterDataDevolucao();
             Situacao = ObterSituacao();
+        }
+
+        public Emprestimo(Reserva reserva)
+        {
+            this.Id = GeradorDeIds.GerarIdEmprestimo();
+            this.Amigo = reserva.Amigo;
+            this.Revista = reserva.Revista;
+            this.DataEmprestimo = reserva.DataRetirada;
+            this.DataDevolucao= reserva.DataDevolucao;
+            this.Situacao = "Concluído";
         }
 
         public string Validar()

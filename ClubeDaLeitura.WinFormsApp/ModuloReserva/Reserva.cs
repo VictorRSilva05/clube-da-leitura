@@ -23,6 +23,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloReserva
             Revista = revista;
             DataRetirada = dataRetirada;
             DataDevolucao = ObterDataDevolucao();
+            Situacao = ObterSituacao();
         }
 
         public string Validar()
@@ -57,7 +58,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloReserva
             if (DataDevolucao < DateTime.Now)
                 return "Atrasado";
             else
-                return "Aberto";
+                return "Ativo";
         }
 
     }
