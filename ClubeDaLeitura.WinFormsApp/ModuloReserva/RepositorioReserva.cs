@@ -9,5 +9,10 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloReserva
         {
 
         }
+
+        public void Inserir(Reserva reserva)
+        {
+            reservas.Add(reserva);
+        }
     }
 }

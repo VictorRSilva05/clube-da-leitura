@@ -35,6 +35,9 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
             if(Revista.StatusDeEmprestimo == "Emprestada")
                 erros += "Revista já emprestada.\n";
 
+            if (Revista.StatusDeEmprestimo == "Reservada")
+                erros += "Revista já está reservada.\n";
+
             return erros;
         }
 
