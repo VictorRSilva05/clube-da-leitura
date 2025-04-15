@@ -11,6 +11,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
         public Amigo Amigo { get; set; }
         public Revista Revista { get; set; }
         public DateTime DataEmprestimo {  get; set; }
+        public DateTime DataPrevista { get; set; }
         public DateTime DataDevolucao { get; set; }
         public string Situacao { get; set; }
 
@@ -21,7 +22,7 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
             Amigo = amigo;
             Revista = revista;
             DataEmprestimo = DateTime.Now;
-            DataDevolucao = ObterDataDevolucao();
+            DataPrevista = ObterDataDevolucao();
             Situacao = ObterSituacao();
         }
 
@@ -31,8 +32,16 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
             this.Amigo = reserva.Amigo;
             this.Revista = reserva.Revista;
             this.DataEmprestimo = reserva.DataRetirada;
-            this.DataDevolucao= reserva.DataDevolucao;
+            this.DataPrevista= reserva.DataDevolucao;
+            this.DataDevolucao = DateTime.Now;
             this.Situacao = "Concluído";
+        }
+
+        public Emprestimo(Amigo amigo, Revista revista, DateTime dataEmprestimo) : this(amigo, revista)
+        {
+            DataEmprestimo = dataEmprestimo;
+            DataPrevista = ObterDataDevolucao();
+            Situacao = ObterSituacao();
         }
 
         public string Validar()
@@ -56,12 +65,12 @@ namespace ClubeDaLeitura.WinFormsApp.ModuloEmprestimo
 
         public DateTime ObterDataDevolucao()
         {
-            return DataDevolucao = DataEmprestimo.AddDays(Revista.Caixa.DiasDeEmprestimo);
+            return DataPrevista = DataEmprestimo.AddDays(Revista.Caixa.DiasDeEmprestimo);
         }
 
         public string ObterSituacao()
         {
-            if (DataDevolucao < DateTime.Now)
+            if (DataPrevista < DateTime.Now)
                 return "Atrasado";
             else
                 return "Aberto";

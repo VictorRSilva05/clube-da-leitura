@@ -13,6 +13,7 @@ namespace ClubeDaLeitura.WinFormsApp.Compartilhado
         public static long IdRevista = 0;
         public static long IdEmprestimo = 0;
         public static long IdReserva = 0;
+        public static long IdMulta = 0;
 
         public static long GerarIdAmigo()
         {
@@ -42,6 +43,11 @@ namespace ClubeDaLeitura.WinFormsApp.Compartilhado
         {
             IdReserva++;
             return IdReserva;
+        }
+        public static long GerarIdMulta()
+        {
+            IdMulta++;
+            return IdMulta;
         }
     }
 }

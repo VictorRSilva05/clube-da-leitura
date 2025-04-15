@@ -2,6 +2,7 @@ using ClubeDaLeitura.WinFormsApp.Compartilhado;
 using ClubeDaLeitura.WinFormsApp.ModuloAmigo;
 using ClubeDaLeitura.WinFormsApp.ModuloCaixa;
 using ClubeDaLeitura.WinFormsApp.ModuloEmprestimo;
+using ClubeDaLeitura.WinFormsApp.ModuloMulta;
 using ClubeDaLeitura.WinFormsApp.ModuloReserva;
 using ClubeDaLeitura.WinFormsApp.ModuloRevista;
 
@@ -20,6 +21,7 @@ namespace ClubeDaLeitura.WinFormsApp
             CargaInicialAmigos();
             CargaInicialCaixas();
             CargaInicialRevistas();
+            CargaInicialEmprestimos();
             InicializarDataGridViewAmigos();
             InicializarDataGridViewCaixas();
             InicializarDataGridViewRevistas();
@@ -34,6 +36,17 @@ namespace ClubeDaLeitura.WinFormsApp
             InicializarComboBoxCaixaRevista();
             InicializarComboBoxAmigosEmprestimos();
             InicializarComboBoxRevistasEmprestimos();
+        }
+
+        private void CargaInicialEmprestimos()
+        {
+            string auxId = "1";
+            var amigo = repositorioAmigo.SelecionarPorId(auxId);
+            var revista = repositorioRevista.SelecionarPorId(auxId);
+            DateTime dataEmprestimo = DateTime.Parse("07/04/2025");
+            Emprestimo emprestimo = new Emprestimo(amigo, revista, dataEmprestimo);
+            emprestimo.Id = GeradorDeIds.GerarIdEmprestimo();
+            repositorioEmprestimo.Inserir(emprestimo);
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -207,6 +220,13 @@ namespace ClubeDaLeitura.WinFormsApp
             }
             var emprestimo = repositorioEmprestimo.SelecionarPorId(index);
             repositorioEmprestimo.RegistrarDevolucao(emprestimo);
+            emprestimo.DataDevolucao = DateTime.Now;
+            if (emprestimo.DataDevolucao > emprestimo.DataPrevista)
+            {
+                int dias = (int)(emprestimo.DataDevolucao - emprestimo.DataPrevista).TotalDays;
+                Multa multa = new Multa(dias, emprestimo);
+                emprestimo.Amigo.Multas.Add(multa);
+            }
             MessageBox.Show($"Emprestimo de {emprestimo.Revista.Titulo} de {emprestimo.Amigo.Nome} foi devoluído!");
             AtualizarDataGridViewEmprestimos();
             AtualizarDataGridViewRevistas();
@@ -516,13 +536,15 @@ namespace ClubeDaLeitura.WinFormsApp
         {
             dataGridView4.Columns.Add("Id", "Id");
             dataGridView4.Columns.Add("Amigo", "Amigo");
-            dataGridView4.Columns[1].Width = 150;
+            dataGridView4.Columns[1].Width = 140;
             dataGridView4.Columns.Add("Revista", "Revista");
-            dataGridView4.Columns[2].Width = 150;
+            dataGridView4.Columns[2].Width = 140;
             dataGridView4.Columns.Add("DataEmprestimo", "Data de empréstimo");
-            dataGridView4.Columns[3].Width = 195;
+            dataGridView4.Columns[3].Width = 140;
+            dataGridView4.Columns.Add("DataPrevista", "Data prevista");
+            dataGridView4.Columns[4].Width = 140;
             dataGridView4.Columns.Add("DataDevolucao", "Data de devolução");
-            dataGridView4.Columns[4].Width = 195;
+            dataGridView4.Columns[5].Width = 140;
             dataGridView4.Columns.Add("Situacao", "Situação");
         }
 
@@ -572,7 +594,8 @@ namespace ClubeDaLeitura.WinFormsApp
             dataGridView4.Rows.Clear();
             foreach (var emprestimo in repositorioEmprestimo.emprestimos)
             {
-                dataGridView4.Rows.Add(emprestimo.Id, emprestimo.Amigo.Nome, emprestimo.Revista.Titulo, emprestimo.DataEmprestimo, emprestimo.DataDevolucao, emprestimo.Situacao);
+                dataGridView4.Rows.Add(emprestimo.Id, emprestimo.Amigo.Nome, emprestimo.Revista.Titulo,
+                    emprestimo.DataEmprestimo, emprestimo.DataPrevista, emprestimo.DataDevolucao, emprestimo.Situacao);
             }
         }
 
@@ -599,7 +622,7 @@ namespace ClubeDaLeitura.WinFormsApp
             comboBoxAmigoEmprestimo.SelectedItem = emprestimo.Amigo.Nome;
             comboBoxRevistaEmprestimo.SelectedItem = emprestimo.Revista.Titulo;
             dateTimePickerEmprestimoEmprestimo.Value = emprestimo.DataEmprestimo;
-            dateTimePickerDevolucaoEmprestimo.Value = emprestimo.DataDevolucao;
+            dateTimePickerDevolucaoEmprestimo.Value = emprestimo.DataPrevista;
             textBoxStatusEmprestimo.Text = emprestimo.Situacao;
         }
 
@@ -888,6 +911,27 @@ namespace ClubeDaLeitura.WinFormsApp
             PopularControlesReserva(repositorioReserva.reservas[e.RowIndex]);
         }
 
-
+        private void buttonVisualizarMultas_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxIdAmigo.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido.");
+                return;
+            }
+            else
+            {
+                var amigo = repositorioAmigo.SelecionarPorId(textBoxIdAmigo.Text);
+                var multas = amigo.Multas.ToList();
+                if (multas.Count > 0)
+                {
+                    string multasInfo = string.Join(Environment.NewLine, multas.Select(m => $"ID: {m.Id}, Valor: {m.Valor.ToString("C2")}"));
+                    MessageBox.Show($"Multas para {amigo.Nome}:{Environment.NewLine}{multasInfo}");
+                }
+                else
+                {
+                    MessageBox.Show($"Nenhuma multa encontrada para {amigo.Nome}.");
+                }
+            }
+        }
     }
 }

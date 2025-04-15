@@ -44,6 +44,7 @@
             label4 = new Label();
             textBoxNomeAmigo = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
+            buttonVisualizarMultas = new Button();
             buttonDeletarAmigo = new Button();
             buttonAtualizarAmigo = new Button();
             buttonSalvarAmigo = new Button();
@@ -319,6 +320,7 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel4.Controls.Add(buttonVisualizarMultas, 1, 1);
             tableLayoutPanel4.Controls.Add(buttonDeletarAmigo, 3, 0);
             tableLayoutPanel4.Controls.Add(buttonAtualizarAmigo, 2, 0);
             tableLayoutPanel4.Controls.Add(buttonSalvarAmigo, 1, 0);
@@ -331,6 +333,17 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Size = new Size(921, 200);
             tableLayoutPanel4.TabIndex = 1;
+            // 
+            // buttonVisualizarMultas
+            // 
+            buttonVisualizarMultas.Dock = DockStyle.Fill;
+            buttonVisualizarMultas.Location = new Point(233, 103);
+            buttonVisualizarMultas.Name = "buttonVisualizarMultas";
+            buttonVisualizarMultas.Size = new Size(224, 94);
+            buttonVisualizarMultas.TabIndex = 5;
+            buttonVisualizarMultas.Text = "Visualizar multas";
+            buttonVisualizarMultas.UseVisualStyleBackColor = true;
+            buttonVisualizarMultas.Click += buttonVisualizarMultas_Click;
             // 
             // buttonDeletarAmigo
             // 
@@ -1421,5 +1434,6 @@
         private DataGridView dataGridView5;
         private Button buttonCancelarReserva;
         private Button buttonConcluirReserva;
+        private Button buttonVisualizarMultas;
     }
 }
